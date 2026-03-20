@@ -1,0 +1,183 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    background-color: black;
+}
+.navbar{
+
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
+}
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo img {
+    height: 50px;
+
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 50px;
+   
+   
+}
+.nav-menu a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.nav-menu a:hover {
+    color: #C49A6C; 
+}
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.btn1btn {
+    border: 2px solid  #361f07;
+    background-color: transparent;
+    color: #361f07;
+   
+}
+.btn1btn:hover {
+    background-color: #361f07;
+    color: #ffffff;
+}
+.btn2btn {
+    border: 2px solid #361f07;
+    background-color:  #361f07;
+    color: #ffffff;
+
+}
+.btn2btn:hover {
+    background-color: #b5855a; 
+    border-color: #b5855a;
+}
+
+
+
+.hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.h-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;  
+    opacity: 0.5;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(49, 48, 46, 0.2), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+.hero-overlay {
+    z-index: 2;  
+    background: rgba(0, 0, 0, 0.4); 
+}
+
+.hero-video {
+    animation: gentleZoom 15s ease infinite alternate;
+}
+
+@keyframes gentleZoom {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+.h-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 90%;
+    max-width: 800px;
+}
+
+.h-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    color: #3b240c;
+}
+
+.h-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.h-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.btn1hero {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn2hero {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+}
+
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.trust-badges span {
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+}
