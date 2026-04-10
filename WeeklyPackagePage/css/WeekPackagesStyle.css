@@ -81,3 +81,19 @@ body {
 .close-btn:hover {
     color: red;
 }
+
+.full-details-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #28a745; /* A nice green color for action */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.full-details-btn:hover {
+    background-color: #218838;
+}
