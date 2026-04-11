@@ -1,0 +1,167 @@
+/* Ultra-minimal CSS for User Profile Page matching site style */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.grid-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.left-col {
+    flex: 1;
+    min-width: 250px;
+}
+
+.right-col {
+    flex: 3;
+    min-width: 300px;
+}
+
+.card-box {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 10px;
+}
+
+/* Avatar Image */
+.avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+/* Form Styling */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+}
+
+input:disabled, textarea:disabled {
+    background: #eee;
+}
+
+/* Base Buttons */
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    margin: 5px 0;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.danger-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+}
+
+.save-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    width: 100%;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Tabs */
+.tab-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    border: none;
+    background: none;
+    font-weight: normal;
+}
+
+.tab-btn.active {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+}
+
+/* Alerts */
+#alertContainer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: 1px solid #000;
+    padding: 10px;
+    z-index: 1000;
+}
+
+/* Modals */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: white;
+    min-width: 300px;
+}
+
+/* Navigation Links */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 0;
+}

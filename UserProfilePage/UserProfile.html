@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Beyond the Pyramids</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/UserProfilestyles.css">
+</head>
+
+<body>
+    <div id="alertContainer" class="hidden"></div>
+
+    <div class="grid-layout">
+        <aside class="sidebar left-col" id="sidebar">
+            <div class="card-box center-text">
+                <img id="userAvatar" class="avatar" src="https://via.placeholder.com/100" alt="User Avatar">
+                <input type="file" id="photoUploadInput" accept="image/*" class="hidden">
+                <br>
+                <button id="changePhotoBtn"><i class="fa-solid fa-camera"></i> Change Photo</button>
+                <h2>Zeiad Abogebba</h2>
+                <p>user@example.com</p>
+                <p>Membership: <strong>Explorer</strong></p>
+                <button id="globalSaveBtn" class="save-btn"><i class="fa-solid fa-save"></i> Save All Changes</button>
+            </div>
+
+            <nav class="card-box">
+                <p><strong>Quick Links</strong></p>
+                <ul>
+                    <li><a href="../UserDashboardPage/dashboard.html">Dashboard</a></li>
+                    <li><a href="../TripsOverviewPage/trips.html">Browse Trips</a></li>
+                    <li><a href="../CustomTripBuilderPage/customTrip.html">Custom Trip</a></li>
+                    <li><a href="../LandingPage/ssharta.html">Home</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content right-col">
+            <header>
+                <button id="mobileSidebarToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+                <h1>My Profile</h1>
+            </header>
+
+            <!-- Tab Navigation -->
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="personal">Personal Info</button>
+                <button class="tab-btn" data-tab="security">Security</button>
+                <button class="tab-btn" data-tab="preferences">Preferences</button>
+                <button class="tab-btn" data-tab="history">Travel History</button>
+            </nav>
+
+            <!-- Personal Info Tab -->
+            <section class="card-box tab-panel active" id="tab-personal">
+                <div class="flex-between">
+                    <h2>Personal Information</h2>
+                    <div>
+                        <button id="editPersonalBtn"><i class="fa-solid fa-pen"></i> Edit</button>
+                        <button id="savePersonalBtn" class="hidden"><i class="fa-solid fa-check"></i> Save</button>
+                        <button id="cancelPersonalBtn" class="hidden"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                    </div>
+                </div>
+                <form id="personalInfoForm">
+                    <label>Full Name: <input type="text" value="Zeiad Abogebba" disabled></label>
+                    <label>Email: <input type="email" id="email" value="user@example.com" disabled></label>
+                    <label>Phone: <input type="tel" value="+20 100 123 4567" disabled></label>
+                    <label>DOB: <input type="date" value="1995-05-15" disabled></label>
+                    <label>Address: <textarea disabled>123 Nile View St, Cairo, Egypt</textarea></label>
+                </form>
+            </section>
+
+            <!-- Security Tab -->
+            <section class="card-box tab-panel hidden" id="tab-security">
+                <h2>Security</h2>
+                <form>
+                    <label>Current Password: <input type="password"></label>
+                    <label>New Password: <input type="password"></label>
+                    <label>Confirm Password: <input type="password"></label>
+                    <button type="button">Update Password</button>
+                </form>
+                <hr>
+                <label><input type="checkbox"> Enable Two-Factor Authentication</label>
+                <hr>
+                <p><strong>Danger Zone</strong></p>
+                <button id="deleteAccountBtn" class="danger-btn">Delete Account</button>
+            </section>
+
+            <!-- Preferences Tab -->
+            <section class="card-box tab-panel hidden" id="tab-preferences">
+                <h2>Preferences</h2>
+                <form>
+                    <label>Accommodation: 
+                        <select>
+                            <option>Luxury Hotel</option>
+                            <option>Standard Hotel</option>
+                        </select>
+                    </label>
+                    <label>Transport: 
+                        <select>
+                            <option>Private Car</option>
+                            <option>Tour Bus</option>
+                        </select>
+                    </label>
+                    <br><br>
+                    <label><input type="checkbox" checked> Email Notifications</label><br>
+                    <label><input type="checkbox"> SMS Notifications</label><br>
+                </form>
+            </section>
+
+            <!-- Travel History Tab -->
+            <section class="card-box tab-panel hidden" id="tab-history">
+                <h2>Travel History & Reviews</h2>
+                <div class="card-box">
+                    <h4>Nile Cruise Experience</h4>
+                    <p>Status: Completed | Date: 2024-02-10</p>
+                    <button>Leave a Review</button>
+                </div>
+                <div class="card-box">
+                    <h4>Pyramids & Sphinx Half-Day</h4>
+                    <p>Status: Upcoming | Date: 2024-05-20</p>
+                    <button>Cancel Trip</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay hidden" id="deleteModal">
+        <div class="card-box modal-box">
+            <h3>Delete Account</h3>
+            <p>Are you sure? This cannot be undone.</p>
+            <button id="confirmDeleteBtn" class="danger-btn">Yes, Delete</button>
+            <button id="cancelDeleteBtn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="js/UserProfile.js"></script>
+</body>
+
+</html>
