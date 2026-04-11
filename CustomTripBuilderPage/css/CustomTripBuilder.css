@@ -1,0 +1,93 @@
+/* Basic structural CSS */
+
+.builder-layout {
+    display: flex;
+    gap: 20px;
+}
+
+.wizard-panel {
+    flex: 3;
+}
+
+.price-panel {
+    flex: 1;
+}
+
+.stepper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stepper-step {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.step-card {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+.price-card {
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+.wizard-step {
+    display: none;
+}
+
+.wizard-step.active {
+    display: block;
+}
+
+.dest-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.dest-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    width: 150px;
+}
+
+.dest-card.selected {
+    border: 2px solid black;
+}
+
+.option-cards {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.option-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    flex: 1;
+    min-width: 120px;
+}
+
+.option-card.selected {
+    border: 2px solid black;
+}
+
+.error-msg {
+    color: red;
+    display: none;
+}
+
+.error-msg.show {
+    display: block;
+}

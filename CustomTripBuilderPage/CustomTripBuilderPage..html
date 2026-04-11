@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Trip Builder - Beyond the Pyramids</title>
+    <link rel="stylesheet" href="css/CustomTripBuilder.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Custom Trip Builder</h1>
+        <p>Design your perfect Egyptian adventure step by step</p>
+    </header>
+
+
+    <!-- Stepper -->
+    <div class="stepper">
+        <div class="stepper-step active">1. Destinations</div>
+        <div class="stepper-step">2. Dates</div>
+        <div class="stepper-step">3. Accommodation</div>
+        <div class="stepper-step">4. Transportation</div>
+        <div class="stepper-step">5. Guide</div>
+        <div class="stepper-step">6. Review</div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="builder-layout">
+
+        <!-- Wizard Panel -->
+        <div class="wizard-panel">
+
+            <!-- Step 1: Destinations -->
+            <div class="wizard-step active" id="step-0">
+                <div class="step-card">
+                    <h2>Choose Your Destinations</h2>
+                    <p>Select 1 to 5 Egyptian locations to visit</p><br>
+                    <div class="dest-grid" id="dest-grid"></div>
+                    <p id="dest-counter">0 of 5 selected (min 1)</p>
+                    <div class="error-msg" id="dest-error"></div>
+                </div>
+                <div class="step-nav">
+                    <span></span>
+                    <button onclick="nextStep()">Continue &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Dates -->
+            <div class="wizard-step" id="step-1">
+                <div class="step-card">
+                    <h2>Select Trip Dates</h2>
+                    <p>Maximum trip duration is 14 days</p><br>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="trip-start">Start Date</label>
+                            <input type="date" id="trip-start">
+                        </div>
+                        <div class="form-group">
+                            <label for="trip-end">End Date</label>
+                            <input type="date" id="trip-end">
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <div id="duration-display">Select dates above</div>
+                        </div>
+                    </div>
+                    <div class="error-msg" id="date-error"></div>
+                </div>
+                <div class="step-nav">
+                    <button onclick="prevStep()">&larr; Back</button>
+                    <button onclick="nextStep()">Continue &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Accommodation -->
+            <div class="wizard-step" id="step-2">
+                <div class="step-card">
+                    <h2>Accommodation (optional)</h2>
+                    <p>Choose where you'll stay during your trip</p><br>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="acc-type">Accommodation Type</label>
+                            <select id="acc-type"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="acc-room">Room Type</label>
+                            <select id="acc-room"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="acc-requests">Special Requests (optional)</label>
+                        <textarea id="acc-requests"
+                            placeholder="e.g. sea view, ground floor, extra pillows..."></textarea>
+                    </div>
+                    <div class="error-msg" id="acc-error"></div>
+                </div>
+                <div class="step-nav">
+                    <button onclick="prevStep()">&larr; Back</button>
+                    <button onclick="nextStep()">Continue &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Transportation -->
+            <div class="wizard-step" id="step-3">
+                <div class="step-card">
+                    <h2>Transportation (optional)</h2>
+                    <p>Select your preferred vehicle and extras</p><br>
+                    <div class="option-cards" id="transport-cards"></div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="airport-pickup">
+                        <label for="airport-pickup">Airport pickup &amp; drop-off (+$35)</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="inter-city">
+                        <label for="inter-city">Inter-city transfers (+$50)</label>
+                    </div>
+                    <div class="error-msg" id="transport-error"></div>
+                </div>
+                <div class="step-nav">
+                    <button onclick="prevStep()">&larr; Back</button>
+                    <button onclick="nextStep()">Continue &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Guide -->
+            <div class="wizard-step" id="step-4">
+                <div class="step-card">
+                    <h2>Tourist Guide (optional)</h2>
+                    <p>Pick your guide type and preferences</p><br>
+                    <div class="option-cards" id="guide-cards"></div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guide-lang">Preferred Language</label>
+                            <select id="guide-lang"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="guide-spec">Specialization</label>
+                            <select id="guide-spec"></select>
+                        </div>
+                    </div>
+                    <div class="error-msg" id="guide-error"></div>
+                </div>
+                <div class="step-nav">
+                    <button onclick="prevStep()">&larr; Back</button>
+                    <button onclick="nextStep()">Continue &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Review & Submit -->
+            <div class="wizard-step" id="step-5">
+                <div class="step-card">
+                    <h2>Review Your Trip</h2>
+                    <p>Confirm all details before submitting</p><br>
+                    <div id="review-body"></div>
+                    <hr><br>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="terms-check">
+                        <label for="terms-check">I accept the <a href="#">Terms &amp; Conditions</a> and <a
+                                href="#">Cancellation Policy</a></label>
+                    </div>
+                    <div class="error-msg" id="review-error"></div>
+                </div>
+                <div class="step-nav">
+                    <button onclick="prevStep()">&larr; Back</button>
+                    <button onclick="submitTrip()">Submit Trip Request</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Price Sidebar -->
+        <div class="price-panel">
+            <div class="price-card">
+                <h3>Price Summary</h3><br>
+
+                <div class="price-line">
+                    <span>Destinations</span>
+                    <span id="price-dest">$0</span>
+                </div>
+                <div class="price-line">
+                    <span>Accommodation</span>
+                    <span id="price-acc">$0</span>
+                </div>
+                <div class="price-line">
+                    <span>Transportation</span>
+                    <span id="price-trans">$0</span>
+                </div>
+                <div class="price-line">
+                    <span>Guide</span>
+                    <span id="price-guide">$0</span>
+                </div>
+
+                <div class="price-total">
+                    <span>Total</span>
+                    <span id="price-total">$0</span>
+                </div>
+
+
+                <br>
+                <p><small>Prices are estimates. Final price confirmed upon booking approval.</small></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/CustomTripBuilder.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week Packages - Ancient Egypt Tours</title>
+    <link rel="stylesheet" href="css/WeekPackagesStyle.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Multi-Day Week Packages</h1>
+        <p>Immerse yourself in a full week of Egyptian history, culture, and adventure.</p>
+    </header>
+
+    <div id="filter-container">
+        <label>Duration:
+            <select id="filter-duration">
+                <option value="all">All Durations</option>
+                <option value="7">7 Days</option>
+                <option value="10">10 Days</option>
+            </select>
+        </label>
+
+        <label>Price Range:
+            <select id="filter-price">
+                <option value="all">All Prices</option>
+                <option value="budget">Under $1000</option>
+                <option value="luxury">$1000 and up</option>
+            </select>
+        </label>
+
+        <label>Accommodation:
+            <select id="filter-acc">
+                <option value="all">All Types</option>
+                <option value="hotel">Hotels Only</option>
+                <option value="cruise">Nile Cruise</option>
+            </select>
+        </label>
+    </div>
+
+    <section class="packages-container"> 
+
+        <article class="card" data-duration="7" data-price="luxury" data-acc="cruise">
+            <img src="cruise_image.jpg" alt="Nile Cruise">
+            <div>
+                <h3>7-Day Royal Nile Cruise</h3>
+                <p class="duration"><strong>Duration:</strong> 7 Days / 6 Nights</p>
+                <p class="highlights"><strong>Highlights:</strong> 5-star cruise, all meals, domestic flights.</p>
+                <p class="price"><strong>Starting Price:</strong> $1,200</p>
+                <button class="details-btn">View Details</button>
+                
+                <div class="itinerary-data" style="display: none;">
+                    <strong>Day 1:</strong> Arrival in Cairo.<br>
+                    <strong>Day 2:</strong> Giza Pyramids & Sphinx.<br>
+                    <strong>Day 3-7:</strong> Fly to Luxor, embark on 5-star Nile Cruise to Aswan.
+                </div>
+            </div>
+        </article>
+
+        <article class="card" data-duration="10" data-price="budget" data-acc="hotel">
+            <img src="desert_image.jpg" alt="Desert Safari">
+            <div>
+                <h3>10-Day Explorer's Journey</h3>
+                <p class="duration"><strong>Duration:</strong> 10 Days / 9 Nights</p>
+                <p class="highlights"><strong>Highlights:</strong> 3-star historic hotels, train transport, walking tours.</p>
+                <p class="price"><strong>Starting Price:</strong> $850</p>
+                <button class="details-btn">View Details</button>
+                
+                <div class="itinerary-data" style="display: none;">
+                    <strong>Day 1-3:</strong> Cairo Museums & Markets.<br>
+                    <strong>Day 4-6:</strong> Train to Alexandria, Roman Ruins.<br>
+                    <strong>Day 7-10:</strong> Western Desert Oasis Tour.
+                </div>
+            </div>
+        </article>
+
+        <article class="card" data-duration="7" data-price="budget" data-acc="hotel">
+            <img src="cairo_hotel.jpg" alt="Cairo Hotel Base">
+            <div>
+                <h3>7-Day Cairo & Alexandria Base</h3>
+                <p class="duration"><strong>Duration:</strong> 7 Days / 6 Nights</p>
+                <p class="highlights"><strong>Highlights:</strong> Downtown hotel, daily bus tours, local dining.</p>
+                <p class="price"><strong>Starting Price:</strong> $650</p>
+                <button class="details-btn">View Details</button>
+                
+                <div class="itinerary-data" style="display: none;">
+                    <strong>Day 1:</strong> Arrival & Check-in.<br>
+                    <strong>Day 2-4:</strong> Giza, Saqqara, and the Egyptian Museum.<br>
+                    <strong>Day 5-6:</strong> Day trips to Alexandria.<br>
+                    <strong>Day 7:</strong> Departure.
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <div id="itinerary-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">Trip Title</h2>
+            <p id="modal-text">Itinerary details go here...</p>
+
+            <br>
+        <a href="" class="full-details-btn">See Full Details & Book</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ancient Egypt Tours. All rights reserved.</p>
+    </footer>
+
+    <script src="js/WeekPackagesScript.js"></script>
+</body>
+</html>
