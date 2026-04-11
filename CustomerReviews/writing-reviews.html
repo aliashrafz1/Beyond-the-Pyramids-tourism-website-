@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Review</title>
+    <link rel="stylesheet" href="writing-reviews.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href=""> <i class="fas fa-home"></i> Home</a>
+            <a href=""> <i class="fas fa-bookmark"> </i> My Bookings</a>
+
+            | <span class="user-menu">
+                <i class="fas fa-user-circle"></i> <span id="user-name">Maryam Ayman</span>
+            </span>
+        </nav>
+    </header>
+
+
+    <section class="review-header">
+        <h1> <i class="fas fa-star"></i> Write a Review</h1>
+        <p>Share your experience with other tourists</p>
+    </section>
+
+
+    <section class="review-type">
+        <h3>What would you like to review?</h3>
+        <div class="review-options">
+            <label for="type" class="type-review" id="guide-review">
+                <input type="radio" id="type" name="reviewType" value="guide">
+                <i class="fas fa-chalkboard-teacher "></i> <span>Tourist Guide</span>
+            </label>
+
+            <label for="type" class="type-review" id="hotel-review">
+                <input type="radio" id="type" name="reviewType" value="hotel">
+                <i class="fas fa-hotel "></i> <span>Hotel</span>
+            </label>
+
+            <label for="type" class="type-review" id="transport-review">
+                <input type="radio" id="type" name="reviewType" value="transport">
+                <i class="fas fa-bus "></i> <span>Transportation</span>
+            </label>
+        </div>
+    </section>
+
+
+    <section class="select-item">
+        <h3>Select <span id="item-label">Guide</span></h3>
+        <select id="item-select">
+            <option value="">-- Select --</option>
+            <option value="guide1">Ahmed Hassan - English, French, German</option>
+            <option value="guide2">Fatima Farouk - English, Spanish, Russian, Chinese</option>
+            <option value="guide3">Mohamed Ali - English, Italian, German</option>
+        </select>
+    </section>
+
+    <br>
+    <hr>
+
+
+    <section class="rating-sections">
+        <h3>Your Rating</h3>
+        <div class="stars">
+            <i class="fas fa-star" data-rating="1"></i>
+            <i class="fas fa-star" data-rating="2"></i>
+            <i class="fas fa-star" data-rating="3"></i>
+            <i class="fas fa-star" data-rating="4"></i>
+            <i class="fas fa-star" data-rating="5"></i>
+        </div>
+    </section>
+
+
+    <section class="text-review-section">
+        <h3>Your Review</h3>
+        <textarea id="review-text" rows="12" cols="50"
+            placeholder="What did you like?...What could be improved?"></textarea>
+    </section>
+
+
+    <br>
+    <hr>
+
+    <section class="photo-upload">
+        <h3><i class="fas fa-camera"></i> Add Photos (optional)</h3>
+        <div class="upload-area" id="upload-area">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click or drag photos here</p>
+            <small>Upload up to 5 photos (JPG, PNG, max 5MB each) </small> <br> <br>
+            <input type="file" id="photo-input" accept="image/jpeg, image/png" style="display: none;" multiple>
+        </div>
+        <div class="photo-preview" id="photo-preview"></div>
+    </section>
+
+
+    <section class="submit-section">
+        <button id="submit-review">Submit Review</button>
+        <a href="" class="cancel-link">Cancel</a> <!--go back to home page-->
+    </section>
+
+
+    <section id="success-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h2>Review Submitted!</h2>
+            <p>Thank you for sharing your experience</p>
+            <button onclick="closeModal()">Continue</button>
+        </div>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+    <footer>
+        <section>
+            <i class="fas fa-pyramid"></i>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </section>
+        <section>
+            <h4>Quick Links</h4>
+            <a href="about.html">About Us</a>
+            <a href="packages.html">All Packages</a>
+            <a href="custom-trip.html">Custom Trip Builder</a>
+        </section>
+        <section>
+            <h4>Support</h4>
+            <a href="faq.html">FAQs</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </section>
+        <p>© 2026 Beyond the Pyramids. All rights reserved.</p>
+    </footer>
+
+    <script src="writing-reviews.js"></script>
+</body>
