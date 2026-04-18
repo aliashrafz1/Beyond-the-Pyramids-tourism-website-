@@ -1,0 +1,332 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+
+header {
+    background-color: #0B3B5B;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+nav a:hover {
+    color: #FFD700;
+}
+
+.user-menu {
+    margin-left: auto;
+}
+
+
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #0B3B5B;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    color: #0B3B5B;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+
+
+.review-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.type-review {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.type-review:hover {
+    border-color: #0B3B5B;
+    background: #f0f7ff;
+}
+
+.type-review input {
+    margin-right: 5px;
+}
+
+.type-review i {
+    font-size: 1.5rem;
+    color: #0B3B5B;
+}
+
+
+
+select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #0B3B5B;
+}
+
+
+
+.stars {
+    display: flex;
+    gap: 8px;
+    font-size: 2rem;
+}
+
+.stars i {
+    cursor: pointer;
+    color: #ddd;
+    transition: color 0.2s ease;
+}
+
+.stars i.fas {
+    color: #FFD700;
+}
+
+/* ============================================
+   TEXTAREA (Review Text)
+   ============================================ */
+
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #0B3B5B;
+}
+
+/* ============================================
+   PHOTO UPLOAD
+   ============================================ */
+
+.upload-area {
+    border: 2px dashed #ccc;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: #0B3B5B;
+    background: #f9f9f9;
+    cursor: pointer;
+
+}
+
+.upload-area i {
+    font-size: 2rem;
+    color: #999;
+    margin-bottom: 0.5rem;
+}
+
+.photo-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.preview-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.remove-photo {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* ============================================
+   SUBMIT BUTTON & CANCEL LINK
+   ============================================ */
+
+.submit-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#submit-review {
+    background: #0B3B5B;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#submit-review:hover {
+    background: #1a5276;
+}
+
+.cancel-link {
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   MODAL (Success Popup)
+   ============================================ */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.modal-content i {
+    font-size: 3rem;
+    color: #27ae60;
+    margin-bottom: 1rem;
+}
+
+.modal-content h2 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.modal-content button {
+    background: #0B3B5B;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+footer {
+    background: #0B3B5B;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #FFD700;
+}
+
+footer section {
+    background: transparent;
+    box-shadow: none;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   HORIZONTAL RULE
+   ============================================ */
+
+hr {
+    margin: 1rem 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>BTP Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-target="overviewSection">Overview</a></li>
+                    <li><a href="#" class="nav-link" data-target="employeesSection">All Employees</a></li>
+                    <li><a href="#" class="nav-link" data-target="rolesSection">Roles & Permissions</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="pageTitle">Overview</h1>
+                <span>System Admin</span>
+            </header>
+
+            <div id="overviewSection" class="view-section active">
+                <div class="stats">
+                    <h3>Total Employees: <span id="totalEmpCount">0</span></h3>
+                </div>
+                
+                <h2>Recent Hires</h2>
+                <table id="recentHiresTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Hire Date</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div id="employeesSection" class="view-section">
+                <div class="action-bar">
+                    <input type="text" id="searchInput" placeholder="Search by name...">
+                    <select id="roleFilter">
+                        <option value="">All Roles</option>
+                        <option value="Planner">Planner</option>
+                        <option value="Booking Manager">Booking Manager</option>
+                        <option value="Tourist Guide">Tourist Guide</option>
+                        <option value="Customer Support">Customer Support</option>
+                        <option value="Hotel Manager">Hotel Manager</option>
+                        <option value="Transportation Manager">Transportation Manager</option>
+                    </select>
+                    <button id="addEmployeeBtn">+ Add Employee</button>
+                    <button id="exportBtn">Export Data</button>
+                </div>
+
+                <table id="employeesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Hire Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div id="rolesSection" class="view-section">
+                <div id="rolesGridContainer" class="roles-grid"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="employeeModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <h2 id="modalTitle">Add New Employee</h2>
+            
+            <form id="employeeForm">
+                <input type="hidden" id="empId">
+                
+                <label>Full Name *</label>
+                <input type="text" id="empName" required>
+                
+                <label>Email *</label>
+                <input type="email" id="empEmail" required>
+                
+                <label>Phone *</label>
+                <input type="tel" id="empPhone" required>
+                
+                <label>Date of Birth</label>
+                <input type="date" id="empDob">
+                
+                <label>Address</label>
+                <input type="text" id="empAddress">
+                
+                <label>Role *</label>
+                <select id="empRole" required>
+                    <option value="" disabled selected>Select...</option>
+                    <option value="Planner">Planner</option>
+                    <option value="Booking Manager">Booking Manager</option>
+                    <option value="Tourist Guide">Tourist Guide</option>
+                    <option value="Customer Support">Customer Support</option>
+                    <option value="Hotel Manager">Hotel Manager</option>
+                    <option value="Transportation Manager">Transportation Manager</option>
+                </select>
+                
+                <label>Hire Date *</label>
+                <input type="date" id="empHireDate" required>
+                
+                <label>Username *</label>
+                <input type="text" id="empUsername" required>
+                
+                <label>Password *</label>
+                <input type="text" id="empPassword" required>
+                
+                <div id="roleSpecificSection" class="hidden">
+                    <div id="languagesGroup" class="hidden">
+                        <label>Languages Spoken *</label>
+                        <input type="text" id="empLanguages">
+                    </div>
+                    <div id="specializationGroup" class="hidden">
+                        <label>Specialization</label>
+                        <input type="text" id="empSpecialization">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="cancelModalBtn">Cancel</button>
+                    <button type="submit" id="saveEmployeeBtn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <h2>Employee Details</h2>
+            <div id="viewModalContent"></div>
+            <button id="closeViewModalBtn">Close</button>
+        </div>
+    </div>
+
+    <script src="js/EmployeeManagement.js"></script>
+</body>
+</html>

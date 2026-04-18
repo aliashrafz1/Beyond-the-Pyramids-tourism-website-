@@ -1,0 +1,418 @@
+/* Basic structural CSS */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Layout */
+
+.layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 200px;
+    background: #1c2d3d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.collapsed {
+    width: 0;
+    overflow: hidden;
+}
+
+.sidebar-brand {
+    padding: 20px 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-footer {
+    padding: 15px;
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.sidebar-footer a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.nav-item {
+    display: block;
+    padding: 12px 15px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-header h1 {
+    flex: 1;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+/* Sections */
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Cards / grid */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.stat-card {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.hotel-card {
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+.hotel-card-footer {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Tables */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+th {
+    padding: 8px;
+    text-align: left;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #eee;
+    vertical-align: middle;
+}
+
+/* Forms */
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.filters select {
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
+
+button {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Badges */
+
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 11px;
+}
+
+.badge-confirmed {
+    background: #d1ecf1;
+}
+
+.badge-rejected {
+    background: #f8d7da;
+}
+
+.badge-checked-out {
+    background: #e2e3e5;
+}
+
+/* Modals */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.open {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 15px;
+}
+
+/* Calendar */
+
+.availability-layout {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.calendar-wrapper {
+    border: 1px solid #ccc;
+    padding: 10px;
+    flex: 1;
+    min-width: 280px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.cal-day-header {
+    text-align: center;
+    font-size: 11px;
+    padding: 4px;
+}
+
+.cal-day {
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    border: 1px solid #eee;
+}
+
+.cal-day.empty {
+    border: none;
+}
+
+.cal-day.available {
+    background: #d4edda;
+}
+
+.cal-day.blocked {
+    background: #f8d7da;
+}
+
+.cal-day.today {
+    outline: 2px solid #333;
+    font-weight: bold;
+}
+
+.avail-form-card {
+    padding: 15px;
+    border: 1px solid #ccc;
+    min-width: 220px;
+}
+
+/* Misc */
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.detail-item label {
+    font-size: 11px;
+    color: #888;
+    display: block;
+}
+
+.action-btns {
+    display: flex;
+    gap: 5px;
+}
+
+.settings-card {
+    max-width: 560px;
+}
+
+.settings-card hr {
+    margin: 12px 0;
+}
+
+/* Toast */
+
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2000;
+}
+
+.toast {
+    padding: 10px 15px;
+    color: white;
+    background: #333;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.toast.success {
+    background: #28a745;
+}
+
+.toast.error {
+    background: #dc3545;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 500;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .availability-layout {
+        flex-direction: column;
+    }
+}

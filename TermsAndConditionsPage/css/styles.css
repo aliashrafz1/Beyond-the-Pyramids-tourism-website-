@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.page-header {
+    border-bottom: 2px solid black;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-meta {
+    display: flex;
+    gap: 10px;
+}
+
+.layout-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.sidebar {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.content-main {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.scroll-progress-container {
+    width: 250px;
+}
+
+.scroll-progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    border: 1px solid black;
+    margin-top: 5px;
+}
+
+.scroll-progress-bar-fill {
+    height: 100%;
+    background-color: black;
+    width: 0%;
+}
+
+.legal-section {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.policy-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.policy-table th, 
+.policy-table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.success-message {
+    display: none;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+}
+
+.toc-link.active {
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .layout-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+    .d-print-none {
+        display: none;
+    }
+}

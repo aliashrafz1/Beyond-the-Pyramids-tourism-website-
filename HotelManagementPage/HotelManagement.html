@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management | Beyond the Pyramids</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div id="toastContainer"></div>
+
+    <div class="layout-wrapper">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <h2>Hotel Manager</h2>
+                <p>Beyond the Pyramids</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">Overview</a>
+                <a href="#" class="nav-item" data-section="hotels">Hotels</a>
+                <a href="#" class="nav-item" data-section="rooms">Room Types</a>
+                <a href="#" class="nav-item" data-section="availability">Availability</a>
+                <a href="#" class="nav-item" data-section="reservations">Reservations</a>
+                <a href="#" class="nav-item" data-section="reports">Reports</a>
+                <a href="#" class="nav-item" data-section="settings">Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../AdminDashboardPage/admin-dashboard.html">Back to Admin</a>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <div class="main-wrapper">
+
+            <header class="top-header">
+                <button id="sidebarToggle">Menu</button>
+                <h1 id="pageTitle">Overview</h1>
+                <span id="currentDate"></span>
+            </header>
+
+            <main class="main-content">
+
+                <!-- Overview -->
+                <section id="section-overview" class="section active">
+                    <div class="stats-grid">
+                        <div class="stat-card"><h3>Total Hotels</h3><div id="stat-hotels">0</div></div>
+                        <div class="stat-card"><h3>Total Rooms</h3><div id="stat-rooms">0</div></div>
+                        <div class="stat-card"><h3>Rejected</h3><div id="stat-pending">0</div></div>
+                        <div class="stat-card"><h3>Confirmed</h3><div id="stat-checkins">0</div></div>
+                        <div class="stat-card"><h3>Checked Out</h3><div id="stat-checkouts">0</div></div>
+                        <div class="stat-card"><h3>Total Reservations</h3><div id="stat-confirmed">0</div></div>
+                    </div>
+                    <h2>Recent Reservations</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th><th>Guest</th><th>Hotel</th>
+                                    <th>Check-In</th><th>Check-Out</th><th>Total</th><th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentReservationsBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Hotels -->
+                <section id="section-hotels" class="section">
+                    <div class="section-header">
+                        <h2>Hotels</h2>
+                        <button id="addHotelBtn">Add Hotel</button>
+                    </div>
+                    <div class="hotels-grid" id="hotelsGrid"></div>
+                </section>
+
+                <!-- Room Types -->
+                <section id="section-rooms" class="section">
+                    <div class="section-header">
+                        <h2>Room Types</h2>
+                        <button id="addRoomBtn">Add Room Type</button>
+                    </div>
+                    <div class="filters">
+                        <label for="roomFilterHotel">Filter by Hotel:</label>
+                        <select id="roomFilterHotel"><option value="">All Hotels</option></select>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hotel</th><th>Category</th><th>Room Name</th>
+                                    <th>Capacity</th><th>Bed Type</th><th>Price/Night</th>
+                                    <th>Count</th><th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roomsTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Availability -->
+                <section id="section-availability" class="section">
+                    <h2>Availability Calendar</h2>
+                    <div class="availability-layout">
+                        <div>
+                            <div class="filters">
+                                <label for="availHotel">Hotel:</label>
+                                <select id="availHotel"></select>
+                            </div>
+                            <div class="calendar-wrapper">
+                                <div class="calendar-header">
+                                    <button id="calPrev">&laquo;</button>
+                                    <strong id="calMonthLabel"></strong>
+                                    <button id="calNext">&raquo;</button>
+                                </div>
+                                <div class="calendar-grid" id="calGrid"></div>
+                                <div class="calendar-legend">
+                                    <span class="legend-dot available"></span> Available &nbsp;
+                                    <span class="legend-dot blocked"></span> Blocked &nbsp;
+                                    <span class="legend-dot today-dot"></span> Today
+                                </div>
+                            </div>
+                        </div>
+                        <div class="avail-form-card">
+                            <h3>Set Availability</h3>
+                            <div class="form-group">
+                                <label for="availFormHotel">Hotel</label>
+                                <select id="availFormHotel"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="availStart">From Date</label>
+                                <input type="date" id="availStart">
+                            </div>
+                            <div class="form-group">
+                                <label for="availEnd">To Date</label>
+                                <input type="date" id="availEnd">
+                            </div>
+                            <div class="form-group">
+                                <label for="availStatus">Status</label>
+                                <select id="availStatus">
+                                    <option value="available">Available</option>
+                                    <option value="blocked">Blocked</option>
+                                </select>
+                            </div>
+                            <button id="saveAvailBtn">Apply</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reservations -->
+                <section id="section-reservations" class="section">
+                    <h2>Reservations</h2>
+                    <div class="filters">
+                        <label for="resFilterStatus">Status:</label>
+                        <select id="resFilterStatus">
+                            <option value="">All</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="checked-out">Checked Out</option>
+                        </select>
+                        <label for="resFilterHotel">Hotel:</label>
+                        <select id="resFilterHotel"><option value="">All Hotels</option></select>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th><th>Guest</th><th>Hotel</th><th>Room Type</th>
+                                    <th>Check-In</th><th>Check-Out</th><th>Guests</th>
+                                    <th>Total</th><th>Status</th><th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservationsTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Reports -->
+                <section id="section-reports" class="section">
+                    <h2>Reports</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h3>Total Revenue</h3><div id="rep-revenue">$0</div></div>
+                        <div class="stat-card"><h3>Total Bookings</h3><div id="rep-bookings">0</div></div>
+                        <div class="stat-card"><h3>Active Bookings</h3><div id="rep-active">0</div></div>
+                    </div>
+                    <h3>Bookings by Month</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Month</th><th>Bookings</th><th>Revenue</th></tr></thead>
+                            <tbody id="monthlyTableBody"></tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <h3>Hotel Performance</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Hotel</th><th>Total Bookings</th><th>Revenue</th><th>Active</th></tr></thead>
+                            <tbody id="hotelPerfTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Settings -->
+                <section id="section-settings" class="section">
+                    <h2>Settings</h2>
+                    <div class="settings-card">
+                        <h3>Manager Profile</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sManagerName">Full Name</label>
+                                <input type="text" id="sManagerName">
+                            </div>
+                            <div class="form-group">
+                                <label for="sManagerEmail">Email</label>
+                                <input type="email" id="sManagerEmail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sManagerPhone">Phone</label>
+                            <input type="tel" id="sManagerPhone">
+                        </div>
+                        <hr>
+                        <h3>Default Times</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sCheckIn">Check-In Time</label>
+                                <input type="time" id="sCheckIn">
+                            </div>
+                            <div class="form-group">
+                                <label for="sCheckOut">Check-Out Time</label>
+                                <input type="time" id="sCheckOut">
+                            </div>
+                        </div>
+                        <hr>
+                        <h3>Cancellation Policy</h3>
+                        <div class="form-group">
+                            <label for="sCancellation">Policy Text</label>
+                            <textarea id="sCancellation" rows="4"></textarea>
+                        </div>
+                        <button id="saveSettingsBtn">Save Settings</button>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal: Hotel -->
+    <div class="modal-overlay" id="hotelModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="hotelModalTitle">Add Hotel</h3>
+                <button class="modal-close" data-close="hotelModal">&times;</button>
+            </div>
+            <form id="hotelForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="hName">Hotel Name *</label>
+                    <input type="text" id="hName">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hStars">Star Rating</label>
+                        <select id="hStars">
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5" selected>5 Stars</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hRooms">Total Rooms</label>
+                        <input type="number" id="hRooms" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hLocation">Location *</label>
+                    <input type="text" id="hLocation">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hPhone">Phone</label>
+                        <input type="tel" id="hPhone">
+                    </div>
+                    <div class="form-group">
+                        <label for="hEmail">Email</label>
+                        <input type="email" id="hEmail">
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('hotelModal')">Cancel</button>
+                <button id="saveHotelBtn">Save Hotel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Room Type -->
+    <div class="modal-overlay" id="roomModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="roomModalTitle">Add Room Type</h3>
+                <button class="modal-close" data-close="roomModal">&times;</button>
+            </div>
+            <form id="roomForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="rHotel">Hotel *</label>
+                    <select id="rHotel"></select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rCategory">Category</label>
+                        <select id="rCategory">
+                            <option>Standard</option>
+                            <option>Superior</option>
+                            <option>Deluxe</option>
+                            <option>Suite</option>
+                            <option>Presidential Suite</option>
+                            <option>Villa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rName">Room Name *</label>
+                        <input type="text" id="rName">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rAdults">Adults</label>
+                        <input type="number" id="rAdults" min="1" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="rChildren">Children</label>
+                        <input type="number" id="rChildren" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rBedType">Bed Type</label>
+                        <input type="text" id="rBedType">
+                    </div>
+                    <div class="form-group">
+                        <label for="rPrice">Price / Night ($)</label>
+                        <input type="number" id="rPrice" min="0" step="0.01" value="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="rCount">Room Count</label>
+                    <input type="number" id="rCount" min="0" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="rAmenities">Amenities (comma-separated)</label>
+                    <textarea id="rAmenities" rows="3"></textarea>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('roomModal')">Cancel</button>
+                <button id="saveRoomBtn">Save Room Type</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Reservation Detail -->
+    <div class="modal-overlay" id="reservationModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Reservation Details</h3>
+                <button class="modal-close" data-close="reservationModal">&times;</button>
+            </div>
+            <div id="resDetailContent"></div>
+            <div class="modal-footer">
+                <button onclick="closeModal('reservationModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/HotelManagement.js"></script>
+</body>
+</html>
