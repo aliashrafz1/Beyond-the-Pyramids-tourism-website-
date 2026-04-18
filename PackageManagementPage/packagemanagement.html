@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Management</title>
+    <link rel="stylesheet" href="packagemanagement.css">
+</head>
+
+<body>
+
+    <aside>
+        <h3>Egypt Tourism Hub</h3>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="packages.html" class="active">Package Management</a>
+            <a href="hotels.html">Hotel Management</a>
+            <a href="transport.html">Transportation Management</a>
+            <a href="guides.html">Guide Management</a>
+            <a href="users.html">User Management</a>
+            <a href="bookings.html">Booking Management</a>
+            <a href="reports.html">Reports & Analytics</a>
+        </nav>
+    </aside>
+
+    <main>
+
+        <header>
+            <h1>Package Management</h1>
+            <button id="createPackageBtn">+ Create New Package</button>
+        </header>
+
+        <section class="stats">
+            <article>
+                <h3>Total Packages</h3>
+                <p id="totalPackages">0</p>
+            </article>
+
+            <article>
+                <h3>Active Packages</h3>
+                <p id="activePackages">0</p>
+            </article>
+
+            <article>
+                <h3>Most Popular</h3>
+                <p id="mostPopular">--</p>
+            </article>
+        </section>
+
+        <section class="filters">
+            <input type="text" id="searchInput" placeholder="Search packages...">
+            <select id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="single">Single Locations</option>
+                <option value="day">Day Packages</option>
+                <option value="week">Week Packages</option>
+            </select>
+
+            <select id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </section>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-type="all">All Packages</button>
+            <button class="tab-btn" data-type="single">Single Locations</button>
+            <button class="tab-btn" data-type="day">Day Packages</button>
+            <button class="tab-btn" data-type="week">Week Packages</button>
+        </nav>
+
+        <section id="packagesContainer">
+        </section>
+
+    </main>
+
+    <dialog id="selectTypeModal">
+        <header>
+            <h3>Select Package Type</h3>
+            <button class="close">&times;</button>
+        </header>
+        <section>
+            <button class="type-option" data-type="single">📍 Single Location</button>
+            <button class="type-option" data-type="day">☀️ Day Package</button>
+            <button class="type-option" data-type="week">📅 Week Package</button>
+        </section>
+    </dialog>
+
+    <dialog id="packageModal">
+        <header>
+            <h3 id="modalTitle">Create Package</h3>
+            <button class="close">&times;</button>
+        </header>
+        <section>
+            <form id="packageForm">
+                <input type="hidden" id="packageId">
+
+                <label>Package Name *</label>
+                <input type="text" id="pkgName" required>
+
+                <label>Package Type</label>
+                <input type="text" id="pkgType" readonly disabled>
+
+                <label>City *</label>
+                <select id="pkgCity" required>
+                    <option value="">Select City</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Giza">Giza</option>
+                    <option value="Luxor">Luxor</option>
+                    <option value="Aswan">Aswan</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Hurghada">Hurghada</option>
+                    <option value="Sharm El-Sheikh">Sharm El-Sheikh</option>
+                </select>
+
+                <label>Description</label>
+                <textarea id="pkgDescription" rows="4"></textarea>
+
+                <label>Main Image URL</label>
+                <input type="text" id="pkgImage" placeholder="URL">
+
+                <label>Base Price (EGP) </label>
+                <input type="number" id="pkgPrice" required>
+
+                <label>Discounted Price (EGP)</label>
+                <input type="number" id="pkgDiscountedPrice">
+
+                <label>Status</label>
+                <select id="pkgStatus">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+
+                <fieldset id="singleFields" style="display:none;">
+                    <legend>Location Details</legend>
+                    <label>Opening Hours</label>
+                    <input type="text" id="openingHours" placeholder="e.g., 8:00 AM - 5:00 PM">
+
+                    <label>Closing Days</label>
+                    <input type="text" id="closingDays" placeholder="e.g., Friday">
+
+                    <label>Recommended Duration (hours)</label>
+                    <input type="number" id="recommendedDuration">
+
+                    <label>Guided Tour Available</label>
+                    <select id="guidedTour">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </fieldset>
+
+                <fieldset id="dayFields" style="display:none;">
+                    <legend>Day Package Details</legend>
+                    <label>Duration (hours)</label>
+                    <input type="number" id="dayDuration">
+
+                    <label>Min Group Size</label>
+                    <input type="number" id="minGroup">
+
+                    <label>Max Group Size</label>
+                    <input type="number" id="maxGroup">
+
+                    <label>Languages Available</label>
+                    <input type="text" id="languages" placeholder="en, ar, fr, de">
+
+                    <label>Included Services</label>
+                    <input type="text" id="includedServices" placeholder="Lunch, Guide, Entry Fees">
+
+                    <label>Itinerary (JSON format)</label>
+                    <textarea id="itinerary" rows="3" placeholder='[{"time":"08:00","activity":"Pickup"}]'></textarea>
+                </fieldset>
+
+                <fieldset id="weekFields" style="display:none;">
+                    <legend>Week Package Details</legend>
+                    <label>Duration (days)</label>
+                    <input type="number" id="weekDuration">
+
+                    <label>Nights</label>
+                    <input type="number" id="nights">
+
+                    <label>Accommodation Included</label>
+                    <select id="accommodationIncluded">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <label>Hotel Name (if included)</label>
+                    <input type="text" id="hotelName">
+
+                    <label>Transportation Included</label>
+                    <select id="transportIncluded">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <label>Meals Included</label>
+                    <input type="text" id="mealsIncluded" placeholder="Breakfast, Lunch, Dinner">
+
+                    <label>Daily Itinerary (JSON)</label>
+                    <textarea id="dailyItinerary" rows="4"
+                        placeholder='[{"day":1,"title":"Arrival","description":"..."}]'></textarea>
+                </fieldset>
+            </form>
+        </section>
+        <footer>
+            <button id="cancelModalBtn">Cancel</button>
+            <button id="savePackageBtn">Save Package</button>
+        </footer>
+    </dialog>
+
+    <dialog id="deleteModal">
+        <header>
+            <h3>Confirm Delete</h3>
+            <button class="close">&times;</button>
+        </header>
+        <section>
+            <p>Are you sure you want to delete <strong id="deletePackageName"></strong>?</p>
+            <p>This action cannot be undone.</p>
+        </section>
+        <footer>
+            <button id="cancelDeleteBtn">Cancel</button>
+            <button id="confirmDeleteBtn">Delete</button>
+        </footer>
+    </dialog>
+
+    <template id="packageCardTemplate">
+        <article class="package-card">
+            <img class="package-image" src="" alt="">
+            <span class="package-badge"></span>
+            <section>
+                <h4 class="package-name"></h4>
+                <p class="package-location"></p>
+                <p class="package-price">
+                    <span class="current-price"></span>
+                    <span class="original-price"></span>
+                </p>
+                <p class="package-stats">
+                    <span class="rating">⭐ 0.0</span>
+                    <span class="reviews">(0 reviews)</span>
+                </p>
+                <footer class="package-actions">
+                    <button class="edit-btn">Edit</button>
+                    <button class="duplicate-btn">Duplicate</button>
+                    <button class="delete-btn">Delete</button>
+                </footer>
+            </section>
+        </article>
+    </template>
+
+    <script src="packagemanagement.js"></script>
+
+</body>
+
+</html>

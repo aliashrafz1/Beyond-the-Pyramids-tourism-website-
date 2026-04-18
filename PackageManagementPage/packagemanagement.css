@@ -1,0 +1,265 @@
+/* Simple Wireframe CSS - Structural Only */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+    display: flex;
+    background: #f0f0f0;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+aside {
+    width: 220px;
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+
+aside a {
+    display: block;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid #466481;
+}
+
+aside a.active {
+    color: #f1c40f;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 8px 16px;
+    background: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Stats Section */
+.stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stats>div {
+    flex: 1;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.stats h3 {
+    font-size: 12px;
+    color: #666;
+}
+
+.stats p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Filters */
+.filters>div:first-of-type {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters input,
+.filters select {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.filters input {
+    flex: 1;
+}
+
+/* Tabs */
+.tabs>div:first-of-type {
+    display: flex;
+    gap: 5px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background: #e0e0e0;
+    color: #333;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-btn.active {
+    background: #3498db;
+    color: white;
+}
+
+/* Packages Container */
+#packagesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Package Card (Template) */
+#packagesContainer>div {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#packagesContainer img {
+    width: 100%;
+    height: 150px;
+    background: #ccc;
+    display: block;
+}
+
+#packagesContainer>div>div:last-child {
+    padding: 12px;
+}
+
+#packagesContainer h4 {
+    margin-bottom: 8px;
+}
+
+#packagesContainer .package-location {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+#packagesContainer .package-price {
+    font-weight: bold;
+    color: #27ae60;
+    margin: 10px 0;
+}
+
+#packagesContainer .package-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+#packagesContainer .edit-btn {
+    background: #f39c12;
+}
+
+#packagesContainer .delete-btn {
+    background: #e74c3c;
+}
+
+#packagesContainer .duplicate-btn {
+    background: #95a5a6;
+}
+
+/* Modals (hidden by default) */
+#selectTypeModal,
+#packageModal,
+#deleteModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid #333;
+    padding: 20px;
+    width: 500px;
+    max-width: 90%;
+    z-index: 100;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#selectTypeModal>div:first-child,
+#packageModal>div:first-child,
+#deleteModal>div:first-child {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#selectTypeModal .type-option {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    background: #ecf0f1;
+    color: #333;
+}
+
+/* Form Styles */
+form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+/* Type-specific fields borders */
+#singleFields,
+#dayFields,
+#weekFields {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px dashed #3498db;
+    background: #f9f9f9;
+}
+
+#singleFields h4,
+#dayFields h4,
+#weekFields h4 {
+    margin-bottom: 10px;
+    color: #3498db;
+}
