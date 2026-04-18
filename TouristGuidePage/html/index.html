@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Guide Dashboard - Egypt Tourism Hub</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Egypt Tourism Hub - Tourist Guide</div>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="tourist-guide-dashboard.html">My Schedule</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Tourist Guide Dashboard</h1>
+        <p>Welcome, [Guide Name]</p>
+
+        <section>
+            <h3>My Languages</h3>
+            <div id="languages-list"></div>
+            <div>
+                <input type="text" id="new-language" placeholder="Add language">
+                <button id="add-language">Add Language</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>Set Availability</h3>
+            <div>
+                <label>Select Date:</label>
+                <input type="date" id="availability-date">
+                <select id="availability-slot">
+                    <option value="morning">Morning (8AM - 12PM)</option>
+                    <option value="afternoon">Afternoon (1PM - 5PM)</option>
+                    <option value="full">Full Day</option>
+                </select>
+                <button id="add-availability">Mark Available</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>My Available Dates</h3>
+            <div id="availability-list"></div>
+        </section>
+
+        <section>
+            <h3>Upcoming Assigned Tours</h3>
+            <div id="tours-list"></div>
+        </section>
+
+        <section>
+            <h3>My Reviews</h3>
+            <div id="reviews-list"></div>
+        </section>
+
+        <section>
+            <h3>My Rating</h3>
+            <div id="rating-display"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Egypt Tourism Hub</p>
+    </footer>
+
+     <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner Dashboard - Egypt Tourism Hub</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Egypt Tourism Hub - Planner</div>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="planner-dashboard.html">Packages</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Planner Dashboard</h1>
+
+        <section>
+            <h3>Add New Package</h3>
+            <form id="add-form">
+                <div>
+                    <label>Package Name:</label>
+                    <input type="text" id="name" placeholder="e.g., Pyramids Tour" required>
+                </div>
+                <div>
+                    <label>Type:</label>
+                    <select id="type">
+                        <option value="single">Single Location</option>
+                        <option value="day">Day Package</option>
+                        <option value="week">Week Package</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Price ($):</label>
+                    <input type="number" id="price" placeholder="0" required>
+                </div>
+                <div>
+                    <label>Duration:</label>
+                    <input type="text" id="duration" placeholder="e.g., 2 days, 4 hours">
+                </div>
+                <button type="submit">Add Package</button>
+            </form>
+        </section>
+
+        <section>
+            <h3>Apply Discount</h3>
+            <div>
+                <label>Select Package:</label>
+                <select id="discount-package">
+                    <option value="">Select Package</option>
+                </select>
+            </div>
+            <div>
+                <label>Discount Type:</label>
+                <select id="discount-type">
+                    <option value="percentage">Percentage (%)</option>
+                    <option value="fixed">Fixed Amount ($)</option>
+                </select>
+            </div>
+            <div>
+                <label>Value:</label>
+                <input type="number" id="discount-value" placeholder="0">
+            </div>
+            <div>
+                <label>Valid Until:</label>
+                <input type="date" id="discount-until">
+            </div>
+            <button id="apply-discount">Apply Discount</button>
+        </section>
+
+        <section>
+            <h3>Filter</h3>
+            <select id="filter-type">
+                <option value="all">All Types</option>
+                <option value="single">Single Locations</option>
+                <option value="day">Day Packages</option>
+                <option value="week">Week Packages</option>
+            </select>
+        </section>
+
+        <section>
+            <h3>All Packages</h3>
+            <div id="packages-list"></div>
+        </section>
+
+        <section>
+            <h3>Quick Stats</h3>
+            <div id="stats"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Egypt Tourism Hub</p>
+    </footer>
+
+    <script>
+    
+</script>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
