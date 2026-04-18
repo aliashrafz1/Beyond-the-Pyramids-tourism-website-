@@ -1,62 +1,153 @@
 document.addEventListener("DOMContentLoaded", function() {
-// Grabing Tools
-    const searchInput = document.getElementById("search-input");
+
+    // ==========================================
+    // 1. GRAB HTML ELEMENTS
+    // ==========================================
+    const searchInput = document.getElementById("search-input"); // Or whatever your search ID is
     const statusFilter = document.getElementById("status-filter");
+    const dataRows = document.querySelectorAll(".data-row");
 
-    // Grabing Rows
-    const guideRows = document.querySelectorAll(".guide-row");
+    // "Add Guide" Modal Elements
+    const addModal = document.getElementById("add-modal");
+    const btnAddGuide = document.getElementById("btn-add-guide");
+    const btnCancelAdd = document.getElementById("btn-cancel");
+    const addForm = document.getElementById("add-form");
 
-    // Filtering Function
-    function fitlerTable() {
+    // "Edit Guide" Modal Elements
+    const guideTableBody = document.querySelector("tbody");
+    const editGuideModal = document.getElementById("edit-guide-modal");
+    const editGuideForm = document.getElementById("edit-guide-form");
+    const btnEditGuideCancel = document.getElementById("btn-edit-guide-cancel");
+    
+    let currentGuideRow = null; // Memory for editing
+
+    // ==========================================
+    // 2. FILTERING LOGIC
+    // ==========================================
+    function filterTable() {
+        if (!searchInput || !statusFilter) return; // Skip if elements aren't found
         
         const searchTerm = searchInput.value.toLowerCase();
         const selectedStatus = statusFilter.value;
 
-        guideRows.forEach(row => {
-            const guideName = row.querySelector("strong").textContent.toLowerCase();
-            const guideStatus = row.getAttribute("data-status");
+        const allRows = document.querySelectorAll("tbody tr"); // Re-select rows in case new ones were added
 
-            const matchesSearch = guideName.includes(searchTerm);
-            const matchesStatus = (selectedStatus === "all" || guideStatus === selectedStatus);
+        allRows.forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            const rowStatus = row.getAttribute("data-status");
+
+            const matchesSearch = rowText.includes(searchTerm);
+            const matchesStatus = (selectedStatus === "all") || (rowStatus === selectedStatus);
 
             if (matchesSearch && matchesStatus) {
-                row.style.display = "";
+                row.style.display = ""; 
             } else {
-                row.style.display = "none";
+                row.style.display = "none"; 
             }
         });
     }
-    // Event Listeners
-    searchInput.addEventListener("input", fitlerTable);
-    statusFilter.addEventListener("change", fitlerTable);
+
+    if (searchInput) searchInput.addEventListener("keyup", filterTable);
+    if (statusFilter) statusFilter.addEventListener("change", filterTable);
+
+
+    // ==========================================
+    // 3. "ADD NEW GUIDE" MODAL LOGIC
+    // ==========================================
+    if (btnAddGuide) {
+        btnAddGuide.addEventListener("click", function() {
+            addModal.style.display = "flex";
+        });
+    }
+
+    if (btnCancelAdd) {
+        btnCancelAdd.addEventListener("click", function() {
+            addModal.style.display = "none";
+        });
+    }
+
+    if (addForm) {
+        addForm.addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            alert("Success! Guide saved. (Phase 2 will update the table automatically here)");
+            addForm.reset();
+            addModal.style.display = "none";
+        });
+    }
+
+
+    // ==========================================
+    // 4. ROW ACTIONS & "EDIT GUIDE" MODAL LOGIC
+    // ==========================================
+    
+    // Listen for clicks anywhere inside the table body
+    if (guideTableBody) {
+        guideTableBody.addEventListener("click", function(event) {
+            
+            // ACTION: DELETE BUTTON
+            if (event.target.classList.contains("btn-delete")) {
+                const rowToModify = event.target.closest("tr");
+                const confirmAction = confirm("Are you sure you want to remove this guide from the system?");
+                if (confirmAction) {
+                    rowToModify.remove(); 
+                }
+            }
+
+            // ACTION: EDIT BUTTON
+            if (event.target.classList.contains("btn-edit")) {
+                currentGuideRow = event.target.closest("tr");
+                
+                // Extract text from the row
+                const currentName = currentGuideRow.querySelector("td:nth-child(1)").innerText;
+                const currentLang = currentGuideRow.querySelector("td:nth-child(2)").innerText;
+                const currentStatus = currentGuideRow.getAttribute("data-status");
+                
+                // Inject text into the Edit Modal
+                document.getElementById("edit-guide-name").value = currentName;
+                document.getElementById("edit-guide-lang").value = currentLang;
+                document.getElementById("edit-guide-status").value = currentStatus;
+                
+                // Show Edit Modal
+                editGuideModal.style.display = "flex";
+            }
+        });
+    }
+
+    // Handle Edit Form Submission
+    if (editGuideForm) {
+        editGuideForm.addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            if (currentGuideRow) {
+                // Grab fresh text from the modal
+                const updatedName = document.getElementById("edit-guide-name").value;
+                const updatedLang = document.getElementById("edit-guide-lang").value;
+                const updatedStatus = document.getElementById("edit-guide-status").value;
+                
+                // Inject text back into the table row
+                currentGuideRow.querySelector("td:nth-child(1)").innerHTML = `<strong>${updatedName}</strong>`;
+                currentGuideRow.querySelector("td:nth-child(2)").innerText = updatedLang;
+                
+                // Update badge and hidden attribute
+                const badge = currentGuideRow.querySelector("td:nth-child(3) .badge");
+                if (badge) {
+                    badge.innerText = updatedStatus.charAt(0).toUpperCase() + updatedStatus.slice(1);
+                }
+                currentGuideRow.setAttribute("data-status", updatedStatus);
+                
+                // Close modal
+                editGuideModal.style.display = "none";
+                currentGuideRow = null;
+            }
+        });
+    }
+
+    // Close Edit Modal
+    if (btnEditGuideCancel) {
+        btnEditGuideCancel.addEventListener("click", function() {
+            editGuideModal.style.display = "none";
+            currentGuideRow = null;
+        });
+    }
+
 });
-
-// 5. Grab the popup elements
-    const modal = document.getElementById("add-guide-modal");
-    const btnAddGuide = document.querySelector(".btn-primary"); // Grabs the button from the header
-    const btnCancel = document.getElementById("btn-cancel");
-    const form = document.getElementById("add-guide-form");
-
-    // 6. Open the Modal
-    btnAddGuide.addEventListener("click", function() {
-        // Change it from "none" to "flex" so it appears and centers everything
-        modal.style.display = "flex"; 
-    });
-
-    // 7. Close the Modal (Cancel button)
-    btnCancel.addEventListener("click", function() {
-        modal.style.display = "none";
-    });
-
-    // 8. Handle the Form Submission (The Save Button)
-    form.addEventListener("submit", function(event) {
-        // CRITICAL: This stops the browser from refreshing the page!
-        event.preventDefault(); 
-        
-        // This is where Phase 2 database logic will go! For now, we just prove it works:
-        alert("Success! In Phase 2, this data will be sent to the database.");
-        
-        // Clear the typing boxes and hide the popup
-        form.reset();
-        modal.style.display = "none";
-    });

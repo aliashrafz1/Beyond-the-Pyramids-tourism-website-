@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Management - Agency Admin</title>
+    <link rel="stylesheet" href="css/BookingStyle.css"> 
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        
+        <aside class="sidebar">
+            <h2>Agency Admin</h2>
+            <ul class="nav-list">
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">User Management</a></li>
+                <li><a href="#" class="active">Booking Management</a></li>
+                <li><a href="#">Package Management</a></li>
+                <li><a href="#">Hotel Management</a></li>
+                <li><a href="#">Transport Management</a></li>
+                <li><a href="#">Guide Management</a></li>
+                <li><a href="#">Reports</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Booking Management</h1>
+                    <p>Track, manage, and update customer tour reservations.</p>
+                </div>
+                <button class="btn-primary" id="btn-add-booking">+ Create Booking</button>
+            </header>
+
+            <section class="controls-section">
+                <input type="text" id="search-input" class="search-bar" placeholder="Search by Customer or Booking ID...">
+                <select id="status-filter" class="filter-dropdown">
+                    <option value="all">All Bookings</option>
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </section>
+
+            <section class="table-container">
+                <table class="data-table" id="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer Name</th>
+                            <th>Tour Package</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr class="data-row" data-status="confirmed">
+                            <td><strong>#BK-1042</strong></td>
+                            <td>Sarah Jenkins</td>
+                            <td>Pyramids & Sphinx</td>
+                            <td><span class="badge">Confirmed</span></td>
+                            <td>
+                                <button class="btn-edit">Edit</button>
+                                <button class="btn-delete">Cancel</button>
+                            </td>
+                        </tr>
+                        
+                        <tr class="data-row" data-status="pending">
+                            <td><strong>#BK-1043</strong></td>
+                            <td>Michael Chen</td>
+                            <td>Nile Cruise 3 Nights</td>
+                            <td><span class="badge">Pending</span></td>
+                            <td>
+                                <button class="btn-edit">Edit</button>
+                                <button class="btn-delete">Cancel</button>
+                            </td>
+                        </tr>
+
+                        <tr class="data-row" data-status="cancelled">
+                            <td><strong>#BK-1044</strong></td>
+                            <td>Emma Watson</td>
+                            <td>Luxor Day Tour</td>
+                            <td><span class="badge">Cancelled</span></td>
+                            <td>
+                                <button class="btn-edit">Edit</button>
+                                <button class="btn-delete">Delete</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="add-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Create Booking</h2>
+            <form id="add-form">
+                
+                <div class="form-group">
+                    <label for="new-customer">Customer Name:</label>
+                    <input type="text" id="new-customer" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="new-package">Tour Package:</label>
+                    <input type="text" id="new-package" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="new-status">Status:</label>
+                    <select id="new-status">
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel">Close</button>
+                    <button type="submit" id="btn-save">Save Booking</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+<div id="edit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Edit Booking</h2>
+            <form id="edit-form">
+                
+                <div class="form-group">
+                    <label for="edit-customer">Customer Name:</label>
+                    <input type="text" id="edit-customer" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-package">Tour Package:</label>
+                    <input type="text" id="edit-package" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-status">Status:</label>
+                    <select id="edit-status">
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="btn-edit-cancel">Cancel</button>
+                    <button type="submit" id="btn-edit-save">Save Changes</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script src="js/BookingScript.js"></script>
+
+</body>
+</html>
