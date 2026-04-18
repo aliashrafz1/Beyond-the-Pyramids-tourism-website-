@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reports & Analytics - Beyond the Pyramids</title>
+    <link rel="stylesheet" href="css/ReportsAndAnalytics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+<div class="navbar">
+    <div class="logo">Beyond the Pyramids</div>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="users.html">User Management</a>
+        <a href="reports.html" class="active">Reports</a>
+        <a href="packages.html">Packages</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="transport.html">Transport</a>
+        <a href="guides.html">Guides</a>
+        <a href="employees.html">Employees</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="../login.html" id="authLink">Login</a>
+    </div>
+</div>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>Reports & Analytics</h1>
+        <p>View platform statistics and generate reports</p>
+    </div>
+
+    <!-- SECTION 1: TRAVELERS ANALYTICS -->
+    <div class="report-section">
+        <h2>📊 Travelers Analytics</h2>
+        <div class="section-filters">
+            <label>From Date:</label>
+            <input type="date" id="travelerStartDate">
+            <label>To Date:</label>
+            <input type="date" id="travelerEndDate">
+            <button class="apply-traveler-btn">Apply Filter</button>
+            <button class="reset-traveler-btn">Reset</button>
+        </div>
+        <div class="section-content">
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>Total Travelers</h3>
+                    <p id="totalTravelers">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>New Travelers</h3>
+                    <p id="newTravelers">0</p>
+                    <small>In selected date range</small>
+                </div>
+                <div class="stat-card">
+                    <h3>Select Traveler</h3>
+                    <select id="travelerSelect">
+                        <option value="">Select a traveler</option>
+                    </select>
+                    <p id="selectedTravelerTrips">0 trips booked</p>
+                    <small>Total trips by this traveler</small>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="travelersChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 1.5: ACTIVITY CHARTS -->
+    <div class="report-section">
+        
+        
+            <div class="activity-container">
+                <div class="activity-card">
+                    <h3>Traveler Activity</h3>
+                    <div class="activity-filters">
+                        <label>Select Traveler:</label>
+                        <select id="activityTravelerSelect">
+                            <option value="">Select a traveler</option>
+                        </select>
+                        <button id="applyTravelerActivityBtn">Show Activity</button>
+                    </div>
+                    <div class="chart-container-small">
+                        <canvas id="travelerActivityChart"></canvas>
+                    </div>
+                    <div id="travelerActivityDetails" class="activity-details"></div>
+                </div>
+            </div>
+        
+    </div>
+
+    <!-- SECTION 2: EMPLOYEES ANALYTICS -->
+    <div class="report-section">
+        <h2>👥 Employees Analytics</h2>
+        <div class="section-filters">
+            <label>Employee Type:</label>
+            <select id="employeeTypeFilter">
+                <option value="all">All Types</option>
+                <option value="organizer">Organizers</option>
+                <option value="tour guide">Tour Guides</option>
+                <option value="driver">Drivers</option>
+            </select>
+            <button class="apply-employee-btn">Apply Filter</button>
+            <button class="reset-employee-btn">Reset</button>
+        </div>
+        <div class="section-content">
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>Total Employees</h3>
+                    <p id="totalEmployees">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Filtered Count</h3>
+                    <p id="filteredEmployeeCount">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Avg Salary</h3>
+                    <p id="avgSalary">$0</p>
+                    <small>Per employee type</small>
+                </div>
+            </div>
+            <div class="employee-details">
+                <h4>Trips per Employee</h4>
+                <div id="employeeTripsList"></div>
+            </div>
+            <div class="activity-card">
+                <h3>Employee Activity</h3>
+                <div class="activity-filters">
+                    <label>Select Employee:</label>
+                    <select id="activityEmployeeSelect">
+                        <option value="">Select an employee</option>
+                    </select>
+                    <button id="applyEmployeeActivityBtn">Show Activity</button>
+                </div>
+                <div class="chart-container-small">
+                    <canvas id="employeeActivityChart"></canvas>
+                </div>
+                <div id="employeeActivityDetails" class="activity-details"></div>
+            </div>
+            <div class="chart-container">
+                <canvas id="employeesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: TRIPS ANALYTICS -->
+    <div class="report-section">
+        <h2>✈️ Trips Analytics</h2>
+        <div class="section-filters">
+            <label>From Date:</label>
+            <input type="date" id="tripStartDate">
+            <label>To Date:</label>
+            <input type="date" id="tripEndDate">
+            <button class="apply-trip-btn">Apply Filter</button>
+            <button class="reset-trip-btn">Reset</button>
+        </div>
+        <div class="section-content">
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>Total Trips</h3>
+                    <p id="totalTrips">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Revenue</h3>
+                    <p id="totalRevenue">$0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Last Minute Cancellations</h3>
+                    <p id="lastMinuteCancellations">0</p>
+                </div>
+            </div>
+            
+            <div class="trips-table-container">
+                <h4>Completed Trips</h4>
+                <div class="table-wrapper">
+                    <table id="tripsTable">
+                        <thead>
+                            <tr><th>Trip Name</th><th>Date</th><th>People</th><th>Revenue</th><th>Rating</th><th>Review</th></tr>
+                        </thead>
+                        <tbody id="tripsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="popularity-section">
+                <div class="popular-card">
+                    <h4>🔥 Most Popular Package (This Month)</h4>
+                    <p id="mostPopular">-</p>
+                </div>
+                <div class="popular-card">
+                    <h4>❄️ Least Popular Package (This Month)</h4>
+                    <p id="leastPopular">-</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="tripsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: WEBSITE REVIEW & RATING -->
+    <div class="report-section">
+        <h2>⭐ Website Review & Rating</h2>
+        <div class="section-filters">
+            <label>From Date:</label>
+            <input type="date" id="reviewStartDate">
+            <label>To Date:</label>
+            <input type="date" id="reviewEndDate">
+            <button class="apply-review-btn">Apply Filter</button>
+            <button class="reset-review-btn">Reset</button>
+        </div>
+        <div class="section-content">
+            <div class="rating-container">
+                <div class="rating-card">
+                    <h3>Overall Rating</h3>
+                    <p id="overallRating">0</p>
+                    <div class="stars" id="starDisplay"></div>
+                </div>
+                <div class="rating-card">
+                    <h3>User Reviews</h3>
+                    <div id="reviewsList"></div>
+                </div>
+            </div>
+            <div class="chart-container-small">
+                <canvas id="ratingChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Beyond the Pyramids</p>
+    </div>
+
+
+    <script src="js/ReportsAndAnalytics.js"></script>
+</body>
+
+</html>

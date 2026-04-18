@@ -1,0 +1,161 @@
+* {
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation */
+.navbar {
+    border: 2px solid black;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: black;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Action Bar */
+.action-bar {
+    border: 2px solid black;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.action-bar input, .action-bar select, .action-bar button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    background: white;
+}
+
+/* Table */
+.table-container {
+    border: 2px solid black;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1300px;
+}
+
+/* Status Colors */
+.status-active { color: green; font-weight: bold; }
+.status-inactive { color: red; font-weight: bold; }
+
+/* Type Badges */
+.type-traveler, .type-organizer, .type-tour-guide, .type-driver {
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+}
+.type-traveler { background: #3498db; }
+.type-organizer { background: #9b59b6; }
+.type-tour-guide { background: #2ecc71; }
+.type-driver { background: #e67e22; }
+
+/* Buttons */
+.edit-btn, .delete-btn {
+    background: white;
+    border: 1px solid black;
+    padding: 3px 8px;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+/* Modal - Fixed off-screen issue */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    width: 500px;
+    max-width: 90%;
+    border: 2px solid black;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 10px;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: white;
+}
+
+.modal-body {
+    padding: 15px;
+}
+
+.modal-body input, .modal-body select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+@media (max-width: 700px) {
+    .navbar, .action-bar {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Trip rows */
+.trip-row {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.trip-row input, .trip-row select {
+    width: 100%;
+    padding: 6px;
+    margin: 5px 0;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.remove-trip-btn {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 3px 8px;
+    cursor: pointer;
+}
+
+#addTripBtn {
+    background: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    cursor: pointer;
+}

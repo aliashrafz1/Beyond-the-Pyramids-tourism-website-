@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Management - Beyond the Pyramids</title>
+    <link rel="stylesheet" href="css/userManagement.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">Beyond the Pyramids</div>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../dayPackages.html">Day Packages</a>
+            <a href="../myBookings.html">My Bookings</a>
+            <a href="../profile.html">Profile</a>
+            <a href="../login.html" id="authLink">Login</a>
+        </div>
+    </div>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>User Management</h1>
+        <p>Manage all user accounts</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <button id="addUserBtn">+ Add User</button>
+            <input type="text" id="searchInput" placeholder="Search by name...">
+            <select id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="traveler">Traveler</option>
+                <option value="organizer">Organizer</option>
+                <option value="tour guide">Tour Guide</option>
+                <option value="driver">Driver</option>
+            </select>
+            <select id="tripIdFilter">
+                <option value="all">All Trip IDs</option>
+            </select>
+        </div>
+
+        <!-- Users Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Trip ID</th>
+                        <th>Trip</th>
+                        <th>Accompanying Travelers</th>
+                        <th>Driver</th>
+                        <th>License Plate</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersList"></tbody>
+            </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display:none;">No users found</div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="userModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add User</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+            <input type="hidden" id="userId">
+            
+            <input type="text" id="userName" placeholder="Full Name" required>
+            <input type="number" id="userAge" placeholder="Age" required>
+            
+            <select id="userType">
+                <option value="">Select Type</option>
+                <option value="traveler">Traveler</option>
+                <option value="organizer">Organizer</option>
+                <option value="tour guide">Tour Guide</option>
+                <option value="driver">Driver</option>
+            </select>
+            
+            <select id="userStatus">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+            
+            <div style="margin: 15px 0;">
+                <h4>Trips</h4>
+                <button type="button" id="addTripBtn" style="margin-bottom: 10px;">+ Add Another Trip</button>
+                <div id="tripsContainer"></div>
+            </div>
+            
+            <div class="form-buttons">
+                <button id="saveUserBtn">Save</button>
+                <button id="cancelModalBtn">Cancel</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete User</h2>
+                <span class="close-delete">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Delete <span id="deleteUserName"></span>?</p>
+                <button id="confirmDelete">Delete</button>
+                <button id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Beyond the Pyramids</p>
+    </div>
+
+    <script src="js/userManagement.js"></script>
+</body>
+
+</html>
