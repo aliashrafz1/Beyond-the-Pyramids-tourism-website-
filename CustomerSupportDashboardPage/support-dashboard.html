@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support Dashboard</title>
+    <link rel="stylesheet" href="support-dashboard.css">
+
+</head>
+
+<body>
+
+    <aside>
+        <h3>Egypt Tourism Hub</h3>
+        <nav>
+            <a href="#" data-section="dashboard">Dashboard</a>
+            <a href="#" data-section="tickets" class="active">Support Tickets</a>
+            <a href="#" data-section="escalated">Escalated Issues</a>
+            <a href="#" data-section="customers">Customers</a>
+        </nav>
+    </aside>
+
+    <main>
+
+        <header>
+            <h1>Customer Support</h1>
+            <div>
+                <span class="badge open-badge">Open: 0</span>
+                <span class="badge progress-badge">Progress: 0</span>
+                <span class="badge resolved-badge">Resolved: 0</span>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="section">
+            <div class="dashboard-stats">
+                <div class="dashboard-card">
+                    <h3>Total Tickets</h3>
+                    <div class="number" id="dashTotalTickets">0</div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Avg Response Time</h3>
+                    <div class="number" id="dashAvgResponse">0 hrs</div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Escalated</h3>
+                    <div class="number" id="dashEscalated">0</div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Resolution Rate</h3>
+                    <div class="number" id="dashResolution">0%</div>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div id="recentActivity"></div>
+            </div>
+        </div>
+
+        <!-- Tickets Section -->
+        <div id="ticketsSection" class="section active">
+            <section class="filters">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <select id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="open">Open</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="escalated">Escalated</option>
+                </select>
+                <select id="priorityFilter">
+                    <option value="all">All Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </section>
+            <section id="ticketsContainer"></section>
+        </div>
+
+        <!-- Escalated Section -->
+        <div id="escalatedSection" class="section">
+            <section id="escalatedContainer"></section>
+        </div>
+
+        <!-- Customers Section -->
+        <div id="customersSection" class="section">
+            <section class="filters">
+                <input type="text" id="customerSearchInput" placeholder="Search by name or email...">
+            </section>
+            <section id="customersContainer"></section>
+        </div>
+
+    </main>
+
+    <!-- View/Reply to Ticket Modal -->
+    <dialog id="ticketModal">
+        <header>
+            <h3>Ticket Details</h3>
+            <button class="close">&times;</button>
+        </header>
+        <section id="ticketDetails"></section>
+        <footer>
+            <button id="closeTicketBtn" class="btn-secondary">Close</button>
+            <button id="escalateBtn" class="btn-warning">Escalate to Admin</button>
+            <button id="replyBtn" class="btn-primary">Send Reply</button>
+        </footer>
+    </dialog>
+
+    <!-- Reply Modal -->
+    <dialog id="replyModal">
+        <header>
+            <h3>Reply to Customer</h3>
+            <button class="close">&times;</button>
+        </header>
+        <section>
+            <p><strong>Customer:</strong> <span id="replyCustomerName"></span></p>
+            <p><strong>Subject:</strong> <span id="replySubject"></span></p>
+            <label>Your Response *</label>
+            <textarea id="replyMessage" rows="5" placeholder="Type your reply here..."></textarea>
+            <label>Update Status</label>
+            <select id="replyStatus">
+                <option value="open">Open</option>
+                <option value="in-progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+            </select>
+        </section>
+        <footer>
+            <button id="cancelReplyBtn" class="btn-secondary">Cancel</button>
+            <button id="sendReplyBtn" class="btn-primary">Send Reply</button>
+        </footer>
+    </dialog>
+
+    <!-- Escalate Modal -->
+    <dialog id="escalateModal">
+        <header>
+            <h3>Escalate to Admin</h3>
+            <button class="close">&times;</button>
+        </header>
+        <section>
+            <p>Escalate ticket from <strong id="escalateCustomerName"></strong>?</p>
+            <label>Reason for escalation *</label>
+            <textarea id="escalateReason" rows="3" placeholder="Why does this need admin attention?"></textarea>
+            <label>Admin Note</label>
+            <textarea id="adminNote" rows="2" placeholder="Additional info for admin..."></textarea>
+        </section>
+        <footer>
+            <button id="cancelEscalateBtn" class="btn-secondary">Cancel</button>
+            <button id="confirmEscalateBtn" class="btn-warning">Escalate</button>
+        </footer>
+    </dialog>
+
+    <!-- Template for ticket card -->
+    <template id="ticketCardTemplate">
+        <article class="ticket-card">
+            <div class="ticket-header">
+                <span class="ticket-id"></span>
+                <span class="ticket-priority"></span>
+                <span class="ticket-status"></span>
+            </div>
+            <div class="ticket-body">
+                <h4 class="ticket-subject"></h4>
+                <p class="ticket-customer"></p>
+                <p class="ticket-message"></p>
+                <p class="ticket-date"></p>
+            </div>
+            <footer class="ticket-actions">
+                <button class="view-reply-btn">View & Reply</button>
+            </footer>
+        </article>
+    </template>
+
+    <script src="support-dashboard.js"></script>
+
+</body>
+
+</html>
