@@ -23,10 +23,30 @@ Node.js · Express.js · MongoDB · EJS | SWE230 Web Application Programming | S
 - Analytics & reports page
 
 **Security**
-- JWT in httpOnly cookie (7-day or 1-day depending on "remember me")
+- JWT in httpOnly cookie (7-day expiry)
 - bcrypt password hashing
 - Helmet HTTP headers, MongoDB-injection sanitisation, rate limiting
 - Role-based access control: Tourist · Admin
+
+---
+
+## Project Requirements Coverage (SWE230 Rubric)
+
+| Requirement | Weight | Where it's implemented |
+|-------------|:------:|------------------------|
+| **MVC & Routing** | 15 | `models/` → `controllers/` → `routes/` → `views/` (server-side EJS). `pageController.js` renders every page; `app.js` mounts all eight routers. |
+| **Sessions & Authentication** (Security & Privacy) | 5 | JWT in an httpOnly cookie + bcrypt hashing (`authController.js`, `models/User.js`); `protect` / `authorize(role)` role-based access in `middleware/auth.js`. |
+| **External API & Responsive UI** | 5 | OpenWeatherMap weather widget + ExchangeRate currency widget through `app.js` `/api/external/*`; responsive layouts and mobile navigation in `global.css` / `global.js`. |
+| **Uploading Files** | 5 | `middleware/upload.js` — multer + Cloudinary for avatars, package images, and review photos. |
+| **Error Handling** | 5 | Central `AppError` + 4-argument error middleware in `app.js`; `error403/404/500.ejs`; `try/catch` + `next(err)` in every controller. |
+| **Data Validation** (Frontend + Backend) | 10 | `express-validator` chains in `middleware/validate.js`, mirrored by live client-side validation (`register.js`, `contact.js`, `travellers.js`, `writeReview.js`). |
+| **CRUD operations** | 15 | Users, packages, bookings, reviews, and support tickets — full create / read / update / delete over the REST API. |
+| **AJAX / Fetch** | 5 | Every form and admin action calls the REST API with `fetch()` and updates the page without a reload. |
+| **Application UI/UX quality** | 5 | Cinematic public pages, scroll animations, and a custom cursor; clean admin dashboards with a dark/light theme. |
+| **Innovation** | 10 | Custom Trip Architect wizard, live weather + currency widgets, automatic review-rating recalculation, and admin analytics. |
+| **Bonus — HTTPS & Deployment** | 10 | Deployed on Railway over HTTPS (`railway.json`). |
+
+> **Pagination & Localization** (bonus) is intentionally out of scope for this submission.
 
 ---
 
@@ -50,9 +70,13 @@ MONGO_URL=mongodb://localhost:27017/beyondpyramids
 JWT_SECRET=your_secret_here
 JWT_EXPIRES_IN=7d
 OPENWEATHER_API_KEY=your_key_here
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 > Free OpenWeatherMap key at https://openweathermap.org/api — takes up to 2 hours to activate.  
 > The currency converter uses the public ExchangeRate API — no key required.  
+> Image uploads go to **Cloudinary** — create a free account at https://cloudinary.com and set the three `CLOUDINARY_*` keys above.  
 > Optional: `MAX_FILE_SIZE` (default `2097152` — 2 MB) to override the upload limit.
 
 ### 3. Start the server
@@ -85,12 +109,12 @@ Open **http://localhost:3000**
 ├── controllers/
 │   ├── authController.js   register, login, logout, getMe, updatePassword
 │   ├── userController.js   Profile CRUD, avatar upload, admin user management
-│   ├── packageController.js Package CRUD, image upload, filtering & pagination
+│   ├── packageController.js Package CRUD, image upload, filtering & sorting
 │   ├── bookingController.js Draft → travellers → confirm flow, cancellation, admin ops
 │   ├── reviewController.js  Create/read/update/delete + rating recalc trigger
 │   ├── contactController.js Tickets: submit, list, status update, admin reply
 │   ├── adminController.js   Dashboard stats, recent activity, user list
-│   └── pageController.js    EJS render functions for all 29 pages
+│   └── pageController.js    EJS render functions for every page
 │
 ├── routes/
 │   ├── authRoutes.js
@@ -112,8 +136,8 @@ Open **http://localhost:3000**
 │
 ├── middleware/
 │   ├── auth.js             protect, optionalAuth, authorize(role)
-│   ├── validate.js         express-validator chains for all write endpoints
-│   └── upload.js           multer — 2 MB limit, JPEG/PNG/WebP only
+│   ├── validate.js         express-validator chains for auth, package, review & contact
+│   └── upload.js           multer + Cloudinary — 2 MB limit, JPEG/PNG/WebP only
 │
 ├── views/                  EJS templates
 │   ├── index.ejs           Landing page (hero, package previews, reviews carousel)
@@ -132,7 +156,7 @@ Open **http://localhost:3000**
 │   ├── css/                Per-page stylesheets + global.css design system
 │   └── js/                 Per-page client scripts + global.js
 │
-└── uploads/                User avatars and package images (multer disk storage)
+└── railway.json            Railway deployment config (HTTPS hosting)
 ```
 
 ---
@@ -160,7 +184,7 @@ Open **http://localhost:3000**
 | rating / reviewCount | Number | auto-calculated by Review model |
 | itinerary | Array | `{time, activity}` — single/day packages |
 | dailyItinerary | Array | `{day, title, activities}` — week packages |
-| openingHours / closingDays / guidedTour / languages | String | single/day extras |
+| openingHours / closingDays / guidedTour | String | single/day extras |
 | durationDays / nights / hotelName | Number/String | week extras |
 
 ### Booking
@@ -292,7 +316,7 @@ A draft is visible on `/booking/travellers` and `/booking/summary`. Only confirm
 |--------|----------|------|-------------|
 | POST | `/api/contact` | Public | Submit support ticket |
 | GET | `/api/contact/my-tickets` | Tourist | My tickets |
-| GET | `/api/contact` | Admin | All tickets (filter by status/priority) |
+| GET | `/api/contact` | Admin | All tickets (filter by status) |
 | PATCH | `/api/contact/:id/status` | Admin | Update ticket status |
 | POST | `/api/contact/:id/reply` | Admin | Reply and auto-resolve |
 
@@ -363,10 +387,20 @@ Inline handlers in `app.js`. Both fail silently — widget disappears, nothing b
 - **Auth**: JWT in httpOnly cookie; middleware chain: `protect` / `optionalAuth` / `authorize(role)`
 - **Roles**: Tourist · Admin
 - **Error handling**: Centralised `AppError` class + 4-argument error middleware; renders HTML error pages (`error403/404/500.ejs`) for page routes, JSON for `/api` routes. Automatically redirects 401s to `/login`.
-- **Validation**: `express-validator` chains in `middleware/validate.js` for all write endpoints
-- **File uploads**: multer with disk storage → `/uploads/`, 2 MB limit, JPEG/PNG/WebP only
+- **Validation**: `express-validator` chains in `middleware/validate.js` (auth, package, review, contact) mirrored by client-side validation in the page scripts
+- **File uploads**: multer + Cloudinary storage, 2 MB limit, JPEG/PNG/WebP only
 - **Security**: Helmet (CSP disabled for EJS inline scripts), express-mongo-sanitize, rate-limit (200 req / 15 min on `/api`)
 - **Soft deletes**: Packages use `status: inactive` rather than hard deletion
 - **Rating calculation**: `Review.calcAverageRating()` runs as a post-save and post-delete hook, keeping `Package.rating` and `Package.reviewCount` in sync automatically
 - **External integrations**: OpenWeatherMap (weather widget, free tier) · open.exchangerate-api.com (currency, keyless)
 - **Dependencies**: Only lecture-approved packages for SWE230 — see `package.json`
+
+---
+
+## Deployment
+
+The app is deployed on **Railway** (`railway.json`) and served over **HTTPS**. To deploy your own copy:
+
+1. Push the repo to GitHub and create a new Railway project from it.
+2. Add the same environment variables from [Quick Start](#2-configure-environment) in the Railway dashboard — `MONGO_URL`, `JWT_SECRET`, `OPENWEATHER_API_KEY`, and the three `CLOUDINARY_*` keys.
+3. Railway runs `npm start` and assigns an HTTPS URL automatically.

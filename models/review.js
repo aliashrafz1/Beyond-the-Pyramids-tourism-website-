@@ -32,6 +32,7 @@ const reviewSchema = new mongoose.Schema(
       maxlength: [2000, 'Review cannot exceed 2000 characters'],
       minlength: [10, 'Review must be at least 10 characters'],
     },
+    photos:      [{ type: String }],
     photosCount: { type: Number, default: 0 },
     date:        { type: Date, default: Date.now },
   },

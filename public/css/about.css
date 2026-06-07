@@ -1,6 +1,3 @@
-
-
-
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -20,7 +17,6 @@ body {
     gap: 120px;
 }
 
-
 .page-title {
     padding-top: 100px;
     padding-bottom: 40px;
@@ -38,7 +34,6 @@ body {
     font-size: var(--text-lg);
     color: var(--text-secondary);
 }
-
 
 .story-section {
     display: grid;
@@ -89,7 +84,6 @@ body {
     color: var(--text-secondary);
 }
 
-
 .values-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -125,7 +119,6 @@ body {
     line-height: 1.6;
 }
 
-
 .mission-banner {
     padding: var(--space-3xl);
     text-align: center;
@@ -144,7 +137,6 @@ body {
     max-width: 800px;
     margin: 0 auto;
 }
-
 
 @keyframes revealUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -176,7 +168,6 @@ body {
 }
 
 .text-center { text-align: center; }
-
 
 @media (max-width: 992px) {
     .story-section {

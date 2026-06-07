@@ -31,13 +31,9 @@ function renderWeekPackages() {
         const priceRange = price >= 20000 ? 'luxury' : 'budget';
 
         let itineraryHtml = '';
-        if (pkg.dailyItinerary) {
-            try {
-                const days = JSON.parse(pkg.dailyItinerary);
-                itineraryHtml = days.map(d => `<strong>Day ${d.day}:</strong> ${d.title}`).join('<br>');
-            } catch (e) {
-                itineraryHtml = pkg.description || '';
-            }
+        const dailyArr = Array.isArray(pkg.dailyItinerary) ? pkg.dailyItinerary : [];
+        if (dailyArr.length) {
+            itineraryHtml = dailyArr.map(d => `<strong>Day ${d.day}:</strong> ${d.title}`).join('<br>');
         } else {
             itineraryHtml = pkg.description || '';
         }
@@ -58,13 +54,13 @@ function renderWeekPackages() {
                 <h3>${pkg.name}</h3>
                 <p class="highlights">${pkg.description}</p>
                 ${hasDiscount
-                ? `<p class="price">EGP ${pkg.discountedPrice.toLocaleString()} <span style="text-decoration:line-through;opacity:.6;font-size:.85em;">EGP ${pkg.price.toLocaleString()}</span></p>`
-                : `<p class="price">EGP ${price.toLocaleString()}</p>`
-            }
+                    ? `<p class="price">EGP ${pkg.discountedPrice.toLocaleString()} <span style="opacity:.6;font-size:.85em;">/ EGP ${pkg.price.toLocaleString()}</span></p>`
+                    : `<p class="price">EGP ${price.toLocaleString()}</p>`
+                }
                 ${pkg.hotelName ? `<p style="font-size:.8rem;opacity:.7;margin-bottom:.5rem;"><i class="fas fa-hotel"></i> ${pkg.hotelName}</p>` : ''}
                 <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                    <button class="details-btn" data-id="${pkg._id || pkg.id}" data-tier="standard" style="flex: 1; padding: 0.5rem; background: var(--surface); color: var(--text-primary); border: 1px solid var(--border);">Standard (Inc. Acc. & Transport)</button>
-                    <button class="details-btn" data-id="${pkg._id || pkg.id}" data-tier="deluxe" style="flex: 2; padding: 0.5rem;">Deluxe (Inc. Guide)</button>
+                    <button class="details-btn" data-id="${pkg._id || pkg.id}" data-tier="standard" style="flex: 1; padding: 0.5rem; background: var(--surface); color: var(--text-primary); border: 1px solid var(--border);">Standard</button>
+                    <button class="details-btn" data-id="${pkg._id || pkg.id}" data-tier="deluxe" style="flex: 1; padding: 0.5rem;">Deluxe</button>
                 </div>
                 <div class="itinerary-data" style="display:none;">${itineraryHtml}</div>
             </div>

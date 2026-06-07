@@ -204,6 +204,7 @@ function initProfilePhotoUpload(session) {
     const iconEl     = document.getElementById('profileAvatarIcon');
 
     if (!uploadBtn || !fileInput) return;
+    if (uploadBtn.dataset.photoInit) return;
 
     uploadBtn.addEventListener('click', () => fileInput.click());
 
@@ -241,28 +242,30 @@ function initProfilePhotoUpload(session) {
 
         const reader = new FileReader();
         reader.onload = () => {
-            const base64 = reader.result;
             if (imgEl) {
-                imgEl.src = base64;
+                imgEl.src = reader.result;
                 imgEl.alt = document.getElementById('fullName')?.value || 'Profile photo';
                 imgEl.style.display = 'block';
             }
             if (iconEl) iconEl.style.display = 'none';
-
-            fetch('/api/users/avatar', {
-                method: 'PUT',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ image: base64 })
-            })
-            .then(r => r.json())
-            .then(data => {
-                if (removeBtn) removeBtn.classList.remove('hidden');
-                showAlert('Profile photo updated successfully!', 'success');
-            })
-            .catch(() => showAlert('Failed to upload photo.', 'error'));
         };
         reader.readAsDataURL(file);
+
+        const formData = new FormData();
+        formData.append('avatar', file);
+        fetch('/api/users/avatar', { method: 'PUT', credentials: 'include', body: formData })
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    if (imgEl) { imgEl.src = data.data.imageUrl; imgEl.style.display = 'block'; }
+                    if (iconEl) iconEl.style.display = 'none';
+                    if (removeBtn) removeBtn.classList.remove('hidden');
+                    showAlert('Profile photo updated successfully!', 'success');
+                } else {
+                    showAlert('Failed to upload photo.', 'error');
+                }
+            })
+            .catch(() => showAlert('Failed to upload photo.', 'error'));
 
         fileInput.value = '';
     });

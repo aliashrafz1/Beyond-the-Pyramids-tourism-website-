@@ -66,10 +66,6 @@ const getRecentActivity = async (req, res, next) => {
 
 const getAdminUsers = async (req, res, next) => {
   try {
-    const page  = parseInt(req.query.page, 10) || 1;
-    const limit = parseInt(req.query.limit, 10) || 20;
-    const skip  = (page - 1) * limit;
-
     const filter = {};
     if (req.query.role)   filter.role   = req.query.role;
     if (req.query.status) filter.status = req.query.status;

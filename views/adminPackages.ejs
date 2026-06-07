@@ -110,7 +110,6 @@
     </main>
 </div>
 
-<!-- Select Type Modal -->
 <div class="modal-overlay" id="selectTypeModal">
     <div class="modal-container" style="max-width:550px;">
         <div class="modal-header">
@@ -127,7 +126,6 @@
     </div>
 </div>
 
-<!-- Package Form Modal -->
 <div class="modal-overlay" id="packageModal">
     <div class="modal-container">
         <div class="modal-header">
@@ -140,7 +138,7 @@
 
                 <div class="form-group full-width">
                     <label>Package Image</label>
-                    <div id="imagePreviewArea" onclick="document.getElementById('pkgImageFile').click()" style="width:100%;height:180px;border:2px dashed var(--color-border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--color-surface-alt);cursor:pointer;margin-bottom:8px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-primary)'" onmouseout="this.style.borderColor='var(--color-border)'">
+                    <div id="imagePreviewArea" onclick="document.getElementById('pkgImageFile').click()" style="width:100%;height:160px;border:2px dashed var(--color-border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--color-surface-alt);cursor:pointer;margin-bottom:8px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-primary)'" onmouseout="this.style.borderColor='var(--color-border)'">
                         <img id="imagePreview" src="" alt="Preview" style="display:none;width:100%;height:100%;object-fit:cover;">
                         <div id="imageUploadPlaceholder" style="text-align:center;color:var(--color-text-muted);pointer-events:none;">
                             <i class="fas fa-image" style="font-size:2rem;display:block;margin-bottom:8px;"></i>
@@ -168,20 +166,11 @@
                         <option value="Aswan">Aswan</option>
                         <option value="Alexandria">Alexandria</option>
                         <option value="Hurghada">Hurghada</option>
-                        <option value="Sharm El-Sheikh">Sharm El-Sheikh</option>
+                        <option value="Sharm El Sheikh">Sharm El Sheikh</option>
+                        <option value="Dahab">Dahab</option>
+                        <option value="Siwa">Siwa</option>
+                        <option value="Fayoum">Fayoum</option>
                     </select>
-                </div>
-                <div class="form-group full-width">
-                    <label>Description</label>
-                    <textarea id="pkgDescription" rows="4" placeholder="Detail the traveler experience..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Base Price (EGP)</label>
-                    <input type="number" id="pkgPrice" required placeholder="0.00">
-                </div>
-                <div class="form-group">
-                    <label>Discounted Price (EGP)</label>
-                    <input type="number" id="pkgDiscountedPrice" placeholder="Optional">
                 </div>
                 <div class="form-group">
                     <label>Status</label>
@@ -191,44 +180,104 @@
                     </select>
                 </div>
 
-                <!-- Single Location fields -->
+                <div class="form-group full-width">
+                    <label>Description</label>
+                    <textarea id="pkgDescription" rows="3" placeholder="Describe the traveler experience in 1–2 compelling sentences..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <fieldset>
+                        <legend>Pricing</legend>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Standard Tier Price (EGP) *</label>
+                                <input type="number" id="pkgDiscountedPrice" placeholder="e.g. 8500" min="1">
+                                <small style="color:var(--color-text-muted);font-size:0.75rem;">Group tour, shared transport, standard inclusions</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Deluxe Tier Price (EGP) *</label>
+                                <input type="number" id="pkgPrice" required placeholder="e.g. 16500" min="1">
+                                <small style="color:var(--color-text-muted);font-size:0.75rem;">Private guide, premium transport, luxury inclusions</small>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-group full-width">
+                    <fieldset>
+                        <legend>Audience &amp; Services</legend>
+                        <div class="form-grid">
+                            <div class="form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end;">
+                                <div>
+                                    <label>Min Group</label>
+                                    <input type="number" id="minGroup" placeholder="1" min="1">
+                                </div>
+                                <div>
+                                    <label>Max Group</label>
+                                    <input type="number" id="maxGroup" placeholder="12" min="1">
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Standard Inclusions <small style="font-weight:400;color:var(--color-text-muted)">(comma-separated — shown as highlight pills)</small></label>
+                                <input type="text" id="includedServices" placeholder="Egyptologist guide, A/C transport, Entry fees, Lunch">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Deluxe Tier Extras <small style="font-weight:400;color:var(--color-text-muted)">(pipe-separated | — listed in the Deluxe panel)</small></label>
+                                <textarea id="deluxeExtras" rows="3" placeholder="Private A/C car|Personal Egyptologist|VIP fast-track entry|Gourmet lunch"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
                 <div class="form-group full-width" id="singleFields" style="display:none;">
                     <fieldset>
                         <legend>Location Details</legend>
                         <div class="form-grid">
-                            <div class="form-group"><label>Opening Hours</label><input type="text" id="openingHours" placeholder="8:00 AM - 5:00 PM"></div>
-                            <div class="form-group"><label>Closing Days</label><input type="text" id="closingDays" placeholder="None"></div>
-                            <div class="form-group"><label>Duration (Hours)</label><input type="number" id="recommendedDuration"></div>
+                            <div class="form-group"><label>Opening Hours</label><input type="text" id="openingHours" placeholder="8:00 AM – 5:00 PM"></div>
+                            <div class="form-group"><label>Closing Days</label><input type="text" id="closingDays" placeholder="None — open daily"></div>
+                            <div class="form-group"><label>Recommended Duration (hrs)</label><input type="number" id="recommendedDuration" placeholder="3" min="0.5" step="0.5"></div>
                             <div class="form-group"><label>Guided Tour</label><select id="guidedTour"><option value="yes">Yes</option><option value="no">No</option></select></div>
                         </div>
-                    </fieldset>
-                </div>
-
-                <!-- Day Package fields -->
-                <div class="form-group full-width" id="dayFields" style="display:none;">
-                    <fieldset>
-                        <legend>Day Package Specifics</legend>
-                        <div class="form-grid">
-                            <div class="form-group"><label>Total Hours</label><input type="number" id="dayDuration"></div>
-                            <div class="form-group"><label>Languages</label><input type="text" id="languages" placeholder="EN, FR, AR"></div>
-                            <div class="form-group"><label>Min Group Size</label><input type="number" id="minGroup"></div>
-                            <div class="form-group"><label>Max Group Size</label><input type="number" id="maxGroup"></div>
-                            <div class="form-group full-width"><label>Included Services</label><input type="text" id="includedServices" placeholder="Guide, Transportation, Tickets"></div>
-                            <div class="form-group full-width"><label>Itinerary (JSON)</label><textarea id="itinerary" rows="3" placeholder='[{"time":"08:00","activity":"Hotel Pickup"}]'></textarea></div>
+                        <div style="margin-top:16px;">
+                            <label class="form-group" style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:8px;">Visit Schedule</label>
+                            <p class="builder-hint">Add each stop with its time, activity name, and an optional short description.</p>
+                            <div id="singleItinBuilder" class="itin-builder"></div>
+                            <button type="button" class="add-row-btn" onclick="addItinRow('singleItinBuilder')"><i class="fas fa-plus"></i> Add Stop</button>
                         </div>
                     </fieldset>
                 </div>
 
-                <!-- Week Package fields -->
+                <div class="form-group full-width" id="dayFields" style="display:none;">
+                    <fieldset>
+                        <legend>Day Tour Details</legend>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Opening / Departure Time</label><input type="text" id="openingHoursDay" placeholder="Departs 08:00 daily"></div>
+                            <div class="form-group"><label>Closed / Reduced Days</label><input type="text" id="closingDaysDay" placeholder="None"></div>
+                            <div class="form-group"><label>Total Duration (hrs)</label><input type="number" id="dayDuration" placeholder="10" min="1"></div>
+                        </div>
+                        <div style="margin-top:16px;">
+                            <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:8px;">Day Itinerary</label>
+                            <p class="builder-hint">Add each stop: time (e.g. 09:00), activity name, and an optional brief description.</p>
+                            <div id="dayItinBuilder" class="itin-builder"></div>
+                            <button type="button" class="add-row-btn" onclick="addItinRow('dayItinBuilder')"><i class="fas fa-plus"></i> Add Stop</button>
+                        </div>
+                    </fieldset>
+                </div>
+
                 <div class="form-group full-width" id="weekFields" style="display:none;">
                     <fieldset>
-                        <legend>Week Stay Specifics</legend>
+                        <legend>Week Package Details</legend>
                         <div class="form-grid">
-                            <div class="form-group"><label>Duration (Days)</label><input type="number" id="weekDuration"></div>
-                            <div class="form-group"><label>Nights</label><input type="number" id="nights"></div>
+                            <div class="form-group"><label>Duration (Days)</label><input type="number" id="weekDuration" placeholder="7" min="1"></div>
+                            <div class="form-group"><label>Nights</label><input type="number" id="nights" placeholder="6" min="1"></div>
                             <div class="form-group"><label>Accommodation</label><select id="accommodationIncluded"><option value="yes">Included</option><option value="no">Not Included</option></select></div>
-                            <div class="form-group"><label>Hotel Tier/Name</label><input type="text" id="hotelName" placeholder="e.g., Sheraton Nile"></div>
-                            <div class="form-group full-width"><label>Daily Schedule (JSON)</label><textarea id="dailyItinerary" rows="4" placeholder='[{"day":1,"title":"Cairo Arrival"}]'></textarea></div>
+                            <div class="form-group"><label>Hotel Tier / Name</label><input type="text" id="hotelName" placeholder="e.g., 4-star · Marriott Mena House"></div>
+                        </div>
+                        <div style="margin-top:16px;">
+                            <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:8px;">Day-by-Day Itinerary</label>
+                            <p class="builder-hint">Add each day: day number, title, full description, and meals included.</p>
+                            <div id="weekDailyBuilder" class="itin-builder"></div>
+                            <button type="button" class="add-row-btn" onclick="addDailyRow('weekDailyBuilder')"><i class="fas fa-plus"></i> Add Day</button>
                         </div>
                     </fieldset>
                 </div>
@@ -245,7 +294,6 @@
     </div>
 </div>
 
-<!-- Delete Confirm Modal -->
 <div class="modal-overlay" id="deleteModal">
     <div class="modal-container" style="max-width:400px;text-align:center;">
         <div class="modal-header">
@@ -278,21 +326,22 @@
             status: p.status || 'active',
             rating: p.rating || 4.5,
             reviews: p.reviewCount || 0,
+
+            minGroup: p.minGroup || 1,
+            maxGroup: p.maxGroup || 15,
+            includedServices: p.includedServices || '',
+            deluxeExtras: p.deluxeExtras || '',
             openingHours: p.openingHours || '',
             closingDays: p.closingDays || '',
             recommendedDuration: p.recommendedDuration || '',
             guidedTour: p.guidedTour || 'yes',
             duration: p.duration || '',
-            languages: p.languages || '',
-            minGroup: p.minGroup || '',
-            maxGroup: p.maxGroup || '',
-            includedServices: p.includedServices || '',
-            itinerary: p.itinerary ? JSON.stringify(p.itinerary) : '',
+            itinerary: p.itinerary || [],
             durationDays: p.durationDays || '',
             nights: p.nights || '',
             accommodationIncluded: p.accommodationIncluded || 'yes',
             hotelName: p.hotelName || '',
-            dailyItinerary: p.dailyItinerary ? JSON.stringify(p.dailyItinerary) : '',
+            dailyItinerary: p.dailyItinerary || [],
         }))) %>
     };
     window.SERVER_DATA = SERVER_DATA;

@@ -9,17 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.toc-link');
     const sections = document.querySelectorAll('.legal-section');
 
-    
     function validate() {
         if (acceptBtn) {
             acceptBtn.disabled = !(termsCheck.checked && privacyCheck.checked);
         }
     }
-    
+
     if (termsCheck) termsCheck.onchange = validate;
     if (privacyCheck) privacyCheck.onchange = validate;
 
-    
     const loginError = document.getElementById('terms-login-error');
 
     if (acceptBtn) {
@@ -46,24 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (successMsg) successMsg.style.display = 'block';
     }
 
-    
     window.addEventListener('scroll', () => {
         const top = window.scrollY;
         const bodyHeight = document.documentElement.scrollHeight - window.innerHeight;
-        
-        
+
         if (progressBar && progressText) {
             const percent = Math.min(Math.max(Math.round((top / bodyHeight) * 100), 0), 100);
             progressBar.style.width = percent + '%';
             progressText.innerText = percent + '%';
         }
 
-        
         if (scrollToTopBtn) {
             scrollToTopBtn.style.display = top > 500 ? 'flex' : 'none';
         }
 
-        
         let currentSectionId = "";
         sections.forEach(s => {
             const sectionTop = s.offsetTop;

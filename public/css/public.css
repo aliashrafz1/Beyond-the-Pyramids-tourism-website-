@@ -1,7 +1,5 @@
-
-
 :root {
-    
+
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Montserrat', sans-serif;
     --gold-primary: #C5A059;
@@ -10,7 +8,6 @@
     --container-width: 1200px;
     --section-padding: 100px 0;
 }
-
 
 [data-theme="light"] {
     --bg-primary: #FAF9F6;
@@ -24,7 +21,6 @@
     --shadow-base: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-
 [data-theme="dark"] {
     --bg-primary: #0A0A0A;
     --bg-alt: #121212;
@@ -36,7 +32,6 @@
     --glass-border: rgba(255, 255, 255, 0.1);
     --shadow-base: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
-
 
 * {
     margin: 0;
@@ -57,7 +52,6 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Custom pyramid cursor — landing page only (see index.html body.luxury-aesthetic) */
 body.luxury-aesthetic {
     cursor: none;
 }
@@ -80,7 +74,6 @@ body.luxury-aesthetic .admin-logout-btn {
     cursor: none !important;
 }
 
-
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 600;
@@ -96,7 +89,6 @@ h1, h2, h3, h4 {
     color: var(--text-secondary);
     margin-bottom: 2rem;
 }
-
 
 .scroll-progress {
     position: fixed;
@@ -145,7 +137,6 @@ h1, h2, h3, h4 {
     opacity: 0.08;
 }
 
-
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -169,7 +160,6 @@ h1, h2, h3, h4 {
     justify-content: center;
     gap: 1rem;
 }
-
 
 .navbar {
     position: fixed;
@@ -320,7 +310,6 @@ h1, h2, h3, h4 {
 [data-theme="dark"] .moon-icon { display: none; }
 [data-theme="dark"] .sun-icon { display: block; }
 
-
 .btn {
     display: inline-block;
     padding: 0.9rem 2.5rem;
@@ -400,7 +389,6 @@ h1, h2, h3, h4 {
 .btn--large { padding: 1.2rem 3rem; font-size: 1.1rem; }
 .btn--small { padding: 0.6rem 1.5rem; font-size: 0.8rem; }
 .btn--full { width: 100%; }
-
 
 .hero-section {
     position: relative;
@@ -513,7 +501,6 @@ h1, h2, h3, h4 {
     opacity: 0.8;
 }
 
-
 .section-header { margin-bottom: 4rem; }
 .section-title { font-size: 3.5rem; margin-bottom: 1rem; }
 .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); }
@@ -530,7 +517,6 @@ h1, h2, h3, h4 {
 .grid--packages {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
-
 
 .destination-card {
     background-color: var(--bg-alt);
@@ -549,7 +535,7 @@ h1, h2, h3, h4 {
 
 .card-image-wrapper {
     position: relative;
-    padding-top: 125%; 
+    padding-top: 125%;
     overflow: hidden;
 }
 
@@ -659,7 +645,6 @@ h1, h2, h3, h4 {
     color: var(--gold-primary);
 }
 
-
 .package-card {
     background-color: var(--bg-primary);
     border: 1px solid var(--border-color);
@@ -711,8 +696,8 @@ h1, h2, h3, h4 {
     font-size: 0.95rem;
 }
 
-.package-amenities i { 
-    color: var(--gold-primary); 
+.package-amenities i {
+    color: var(--gold-primary);
     font-size: 0.9rem;
 }
 
@@ -779,7 +764,6 @@ h1, h2, h3, h4 {
 
 .package-meta i.fa-star { color: var(--gold-primary); }
 
-
 .steps-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -805,7 +789,6 @@ h1, h2, h3, h4 {
     position: relative;
     z-index: 2;
 }
-
 
 .testimonials-wrapper {
     margin-top: 4rem;
@@ -874,7 +857,6 @@ h1, h2, h3, h4 {
     border: 2px solid var(--gold-primary);
 }
 
-
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -913,9 +895,6 @@ h1, h2, h3, h4 {
 .stat-value { font-size: 3rem; font-family: var(--font-heading); color: var(--gold-primary); }
 .stat-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; }
 
-
-
-
 .main-footer {
     background-color: var(--bg-alt);
     padding: 100px 0 50px;
@@ -942,7 +921,6 @@ h1, h2, h3, h4 {
 .footer-group a { font-size: 0.95rem; color: var(--text-secondary); }
 .footer-group a:hover { color: var(--gold-primary); }
 
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -951,7 +929,6 @@ h1, h2, h3, h4 {
     font-size: 0.85rem;
     color: var(--text-secondary);
 }
-
 
 .reveal-up {
     opacity: 0;
@@ -964,7 +941,6 @@ h1, h2, h3, h4 {
     transform: translateY(0);
 }
 
-/* ─── Logged-in User Chip (from global) ────────────────────────── */
 .admin-user-chip {
     display: inline-flex;
     align-items: center;
@@ -1003,7 +979,6 @@ h1, h2, h3, h4 {
     .about-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
-/* ── Nav collapse: triggered by JS ResizeObserver (body.nav-collapsing) ── */
 body.nav-collapsing .nav-hamburger { display: flex !important; }
 
 body.nav-collapsing .nav-menu:not(.nav-menu--open) { display: none; }
@@ -1061,19 +1036,16 @@ body.nav-collapsing .nav-hamburger { margin-left: auto; }
     .hero-cta { flex-direction: column; align-items: center; gap: 1rem; }
     .hero-cta .btn { width: 100%; max-width: 320px; }
 
-    /* About/Legacy section */
     .about-section { padding: 60px 0; }
     .about-visual { display: none; }
     .about-stats { grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2rem; padding-top: 2rem; }
     .stat-value { font-size: 2rem; }
     .about-content h2 { font-size: 2rem; }
 
-    /* Reviews section */
     .testimonial-card { padding: 1.5rem; }
 
 }
 
-/* Footer — same breakpoint as hamburger (nav-collapsing is JS-driven so use a generous fallback) */
 @media (max-width: 992px) {
     .main-footer { padding: 50px 0 30px; }
     .footer-grid { grid-template-columns: 1fr !important; gap: 2rem; margin-bottom: 40px; }

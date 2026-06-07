@@ -1,6 +1,3 @@
-
-
-
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -16,7 +13,6 @@ body {
     padding: 80px var(--space-xl) 180px;
     width: 100%;
 }
-
 
 .page-title {
     padding-top: 100px;
@@ -34,14 +30,12 @@ body {
     font-size: var(--text-base);
 }
 
-
 .legal-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: var(--space-3xl);
     align-items: start;
 }
-
 
 .legal-sidebar {
     position: sticky;
@@ -55,7 +49,6 @@ body {
     scrollbar-width: thin;
     scrollbar-color: var(--gold-primary) transparent;
 }
-
 
 .toc-container::-webkit-scrollbar {
     width: 4px;
@@ -134,7 +127,6 @@ body {
     border-left-color: var(--gold-primary);
 }
 
-
 .content-main {
     display: flex;
     flex-direction: column;
@@ -148,7 +140,7 @@ body {
     color: var(--text-primary);
 }
 
-.legal-section p, 
+.legal-section p,
 .legal-section li {
     color: var(--text-secondary);
     line-height: 1.8;
@@ -166,7 +158,6 @@ body {
     font-style: italic;
 }
 
-
 .policy-table {
     width: 100%;
     border-collapse: collapse;
@@ -174,7 +165,7 @@ body {
     font-size: var(--text-sm);
 }
 
-.policy-table th, 
+.policy-table th,
 .policy-table td {
     padding: 16px;
     text-align: left;
@@ -188,7 +179,6 @@ body {
     letter-spacing: 0.1em;
     font-weight: 600;
 }
-
 
 .acknowledgment-section {
     padding: var(--space-3xl);
@@ -238,7 +228,6 @@ body {
     text-align: center;
 }
 
-
 .scroll-to-top {
     position: fixed;
     bottom: 40px;
@@ -262,7 +251,6 @@ body {
     transform: translateY(-5px);
     background: var(--gold-hover);
 }
-
 
 @keyframes revealUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -295,7 +283,6 @@ body {
 
 .text-gold { color: var(--gold-primary); }
 
-
 @media (max-width: 992px) {
     .legal-layout {
         grid-template-columns: 1fr;
@@ -311,7 +298,7 @@ body {
     .page-title {
         padding-top: 120px;
     }
-    
+
     .acknowledgment-section {
         padding: var(--space-xl);
     }

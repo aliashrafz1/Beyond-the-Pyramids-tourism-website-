@@ -32,7 +32,7 @@ function initVoucherActions() {
     function enforceLightModeColors() {
         const isLight = document.documentElement.getAttribute("data-theme") === "light";
         const textElements = document.querySelectorAll('.editorial-title, .editorial-title span, .editorial-subtitle, .card-title, .info-row .label, .info-row .value, .itinerary-list li, .accordion-btn, .concierge-box h4, .concierge-box p, .concierge-link');
-        
+
         textElements.forEach(el => {
             if (isLight) {
                 el.style.setProperty("color", "#111111", "important");

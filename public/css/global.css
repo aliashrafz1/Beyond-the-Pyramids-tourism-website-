@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-
 :root {
 
     --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --font-body: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
-
 
     --text-xs: 0.75rem;
     --text-sm: 0.85rem;
@@ -17,7 +15,6 @@
     --text-3xl: 2.25rem;
     --text-4xl: 3rem;
 
-
     --gold-primary: #C5A059;
     --gold-hover: #D4AF37;
     --color-primary: #C5A059;
@@ -25,11 +22,9 @@
     --color-primary-light: #E8D5B7;
     --color-primary-lighter: #F5EDE0;
 
-
     --color-accent: #1B4965;
     --color-accent-dark: #0D2C40;
     --color-accent-light: #2C6E8A;
-
 
     --color-success: #3D8B5E;
     --color-success-light: #E8F5EE;
@@ -40,7 +35,6 @@
     --color-info: #2471A3;
     --color-info-light: #E8F0FA;
 
-
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -49,18 +43,15 @@
     --space-2xl: 3rem;
     --space-3xl: 4rem;
 
-
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --radius-xl: 16px;
     --radius-full: 50%;
 
-
     --transition-fast: 0.2s ease;
     --transition-base: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     --transition-slow: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-
 
     --sidebar-width: 260px;
     --header-height: 64px;
@@ -68,7 +59,6 @@
     --section-padding: 100px 0;
     --container-width: 1200px;
 }
-
 
 [data-theme="light"],
 :root {
@@ -82,7 +72,6 @@
     --glass-border: rgba(255, 255, 255, 0.3);
     --shadow-base: 0 10px 30px rgba(0, 0, 0, 0.05);
 
-
     --color-bg: #FAF9F6;
     --color-surface: #FFFFFF;
     --color-surface-alt: #F3F1E9;
@@ -92,13 +81,11 @@
     --color-text-secondary: #4D4D4D;
     --color-text-muted: #8A8A8A;
 
-
     --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
     --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 30px 70px rgba(197, 160, 89, 0.15);
     --shadow-gold: 0 0 40px rgba(197, 160, 89, 0.25);
-
 
     --space-xs: 4px;
     --space-sm: 8px;
@@ -108,22 +95,18 @@
     --space-2xl: 64px;
     --space-3xl: 100px;
 
-
     --transition-base: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     --transition-fast: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     --transition-slow: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-
 
     --z-sidebar: 1000;
     --z-modal: 1500;
     --z-overlay: 1400;
     --z-toast: 2000;
 
-
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.08);
 }
-
 
 [data-theme="dark"] {
     --bg-primary: #0A0A0A;
@@ -150,7 +133,6 @@
     --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
     --shadow-xl: 0 16px 50px rgba(0, 0, 0, 0.6);
 }
-
 
 *,
 *::before,
@@ -198,7 +180,6 @@ ul,
 ol {
     list-style: none;
 }
-
 
 h1,
 h2,
@@ -257,7 +238,6 @@ strong {
     color: var(--gold-primary);
 }
 
-
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -315,7 +295,6 @@ textarea {
     min-height: 80px;
 }
 
-
 button,
 .btn {
     font-family: var(--font-body);
@@ -344,7 +323,6 @@ button:hover,
     box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
 }
 
-
 .btn-primary,
 button[type="submit"] {
     background: linear-gradient(135deg, var(--gold-primary), var(--color-primary-dark));
@@ -360,7 +338,6 @@ button[type="submit"]:hover {
     box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
 }
 
-
 .btn-accent {
     background-color: var(--color-accent);
     color: white;
@@ -373,7 +350,6 @@ button[type="submit"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(27, 73, 101, 0.3);
 }
-
 
 .btn-danger,
 .danger-btn {
@@ -389,7 +365,6 @@ button[type="submit"]:hover {
     transform: translateY(-2px);
 }
 
-
 .btn-success,
 .save-btn {
     background-color: var(--color-success);
@@ -404,7 +379,6 @@ button[type="submit"]:hover {
     transform: translateY(-2px);
 }
 
-
 .btn-ghost {
     background-color: transparent;
     border: 1px solid var(--color-border);
@@ -416,7 +390,6 @@ button[type="submit"]:hover {
     color: var(--gold-primary);
     background-color: var(--color-primary-lighter);
 }
-
 
 .btn--glass {
     background-color: var(--glass-bg);
@@ -430,13 +403,11 @@ button[type="submit"]:hover {
     border-color: rgba(255, 255, 255, 0.4);
 }
 
-
 .btn-small,
 .btn-sm {
     padding: 6px 12px;
     font-size: var(--text-xs);
 }
-
 
 table {
     width: 100%;
@@ -519,7 +490,6 @@ tbody tr:last-child td {
     border-bottom: none;
 }
 
-
 @keyframes fadeInUpLuxury {
     0% {
         opacity: 0;
@@ -575,7 +545,6 @@ tbody tr:last-child td {
     border-color: var(--gold-primary);
 }
 
-
 .badge {
     display: inline-flex;
     align-items: center;
@@ -586,7 +555,6 @@ tbody tr:last-child td {
     text-transform: capitalize;
     letter-spacing: 0.02em;
 }
-
 
 .badge-confirmed,
 .status-confirmed,
@@ -615,7 +583,6 @@ tbody tr:last-child td {
     background-color: var(--color-info-light);
     color: var(--color-info);
 }
-
 
 .modal,
 .modal-overlay {
@@ -672,7 +639,6 @@ dialog::backdrop {
     margin-top: var(--space-lg);
     border-top: 1px solid var(--color-border-light);
 }
-
 
 .sidebar {
     width: var(--sidebar-width);
@@ -736,7 +702,6 @@ dialog::backdrop {
     box-shadow: inset 40px 0 60px -40px rgba(197, 160, 89, 0.4);
 }
 
-
 .top-bar,
 .top-header,
 .content-header {
@@ -747,7 +712,6 @@ dialog::backdrop {
     margin-bottom: var(--space-xl);
     border-bottom: 1px solid var(--color-border-light);
 }
-
 
 .dashboard-wrapper,
 .dashboard-layout,
@@ -763,7 +727,6 @@ dialog::backdrop {
     padding: var(--space-xl) var(--space-2xl);
     overflow-x: hidden;
 }
-
 
 .stats-grid,
 .stats-cards,
@@ -836,8 +799,6 @@ dialog::backdrop {
     font-size: var(--text-sm);
 }
 
-
-/* ── Admin Sidebar Theme Toggle ── */
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -885,7 +846,6 @@ dialog::backdrop {
     user-select: none;
 }
 
-
 .navbar {
     position: sticky;
     top: 0;
@@ -924,7 +884,6 @@ dialog::backdrop {
     gap: 1.25rem;
 }
 
-/* Top site navbar: full width, logo left, links centered, actions right */
 .navbar .nav-container {
     width: 100%;
     max-width: none;
@@ -1063,8 +1022,6 @@ dialog::backdrop {
     display: block;
 }
 
-
-
 .btn {
     display: inline-block;
     padding: 0.9rem 2.5rem;
@@ -1146,8 +1103,6 @@ dialog::backdrop {
     font-size: 0.82rem;
 }
 
-
-
 .main-footer,
 .footer,
 footer {
@@ -1220,7 +1175,6 @@ footer {
     color: var(--gold-primary);
 }
 
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -1242,13 +1196,11 @@ footer {
     color: var(--text-secondary);
 }
 
-
 .container {
     max-width: var(--max-content-width);
     margin: 0 auto;
     padding: 0 var(--space-xl);
 }
-
 
 .section-header {
     text-align: center;
@@ -1264,7 +1216,6 @@ footer {
     color: var(--color-text-muted);
     font-size: var(--text-md);
 }
-
 
 .controls-section,
 .action-bar,
@@ -1291,7 +1242,6 @@ footer {
     min-width: 160px;
 }
 
-
 .form-group {
     display: flex;
     flex-direction: column;
@@ -1313,9 +1263,30 @@ footer {
     grid-column: 1 / -1;
 }
 
-
 .hidden {
     display: none !important;
+}
+
+.review-photos {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 10px 0 4px;
+}
+.review-photo-thumb {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    cursor: pointer;
+    opacity: 0.88;
+    transition: opacity 0.2s, transform 0.2s;
+    display: block;
+}
+.review-photo-thumb:hover {
+    opacity: 1;
+    transform: scale(1.07);
 }
 
 .text-center {
@@ -1346,7 +1317,6 @@ footer {
     text-align: center;
 }
 
-
 .page-title {
     text-align: center;
     padding: var(--space-2xl) 0;
@@ -1361,7 +1331,6 @@ footer {
     font-size: var(--text-md);
     color: var(--color-text-muted);
 }
-
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -1380,7 +1349,6 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-text-muted);
 }
-
 
 @keyframes fadeIn {
     from {
@@ -1452,7 +1420,6 @@ footer {
     }
 }
 
-
 .reveal-up {
     opacity: 0;
     transform: translateY(30px);
@@ -1464,9 +1431,6 @@ footer {
     transform: translateY(0);
 }
 
-
-
-
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -1477,7 +1441,6 @@ footer {
     width: 0%;
     transition: width 0.1s ease;
 }
-
 
 .noise-overlay {
     position: fixed;
@@ -1491,7 +1454,6 @@ footer {
     z-index: 9998;
 }
 
-
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
@@ -1500,7 +1462,6 @@ footer {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
 }
-
 
 .btn-primary,
 .btn-action,
@@ -1514,7 +1475,6 @@ footer {
     transform: scale(0.95);
 }
 
-
 .editorial-title {
     font-family: var(--font-display);
     font-size: var(--text-3xl);
@@ -1525,7 +1485,6 @@ footer {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 
 @media (max-width: 768px) {
     :root {
@@ -1589,7 +1548,6 @@ footer {
     }
 }
 
-
 .toast,
 .notification {
     padding: 14px 20px;
@@ -1621,7 +1579,6 @@ footer {
     color: white;
 }
 
-
 .table-container,
 .table-wrapper {
     background-color: var(--color-surface);
@@ -1630,7 +1587,6 @@ footer {
     overflow-x: auto;
     box-shadow: var(--shadow-sm);
 }
-
 
 ::selection {
     background-color: rgba(197, 160, 89, 0.25);
@@ -1642,7 +1598,6 @@ footer {
     outline-offset: 2px;
 }
 
-
 .section {
     padding: var(--section-padding);
 }
@@ -1651,7 +1606,7 @@ footer {
     background-color: var(--bg-alt);
 }
 
-/* =============================================    AUTH USER PROFILE MENU    ============================================= */ .user-profile-menu  {
+ .user-profile-menu  {
          position:  relative;
          display:  flex;
          align-items:  center;
@@ -1662,13 +1617,13 @@ footer {
          background:  var(--glass-bg);
          border:  1px solid var(--glass-border);
          transition:  var(--transition-base);
-     
+
 }
 
  .user-profile-menu:hover  {
          background:  rgba(197,  160,  89,  0.1);
          border-color:  var(--gold-primary);
-     
+
 }
 
  .user-profile-menu .profile-pic  {
@@ -1677,14 +1632,14 @@ footer {
          border-radius:  50%;
          object-fit:  cover;
          border:  2px solid var(--gold-primary);
-     
+
 }
 
  .user-profile-menu .username  {
          font-weight:  600;
          font-size:  var(--text-sm);
          color:  var(--color-text);
-     
+
 }
 
  .user-profile-menu .dropdown-content  {
@@ -1704,14 +1659,14 @@ footer {
          flex-direction:  column;
          overflow:  hidden;
          z-index:  2000;
-     
+
 }
 
  .user-profile-menu:hover .dropdown-content  {
          opacity:  1;
          visibility:  visible;
          transform:  translateY(0);
-     
+
 }
 
  .user-profile-menu .dropdown-content a  {
@@ -1722,28 +1677,21 @@ footer {
          display:  flex;
          align-items:  center;
          gap:  10px;
-     
+
 }
 
  .user-profile-menu .dropdown-content a:last-child  {
          border-bottom:  none;
          color:  var(--color-danger);
-     
+
 }
 
  .user-profile-menu .dropdown-content a:hover  {
          background:  var(--color-primary-lighter);
          color:  var(--gold-primary);
          padding-left:  20px;
-     
-}
 
-   
-/* ═══════════════════════════════════════════════════════
-   SHARED PAGE SIDEBAR SHELL
-   Used by DayPackages, SingleLocation, WeekPackages,
-   CustomTripBuilder — all import global.css
-═══════════════════════════════════════════════════════ */
+}
 
 .page-shell {
     display: flex;
@@ -1886,7 +1834,6 @@ footer {
     min-width: 0;
 }
 
-
 @media (max-width: 768px) {
     .page-shell {
         flex-direction: column;
@@ -1927,13 +1874,6 @@ footer {
     }
 }
 
-
-/* ── PAGE-SHELL LAYOUT CORRECTION ──────────────────────
-   Fix: page-shell must be height:100vh (not min-height)
-   so page-content gets a real boundary and its
-   overflow-y:auto actually creates an internal scroll.
-─────────────────────────────────────────────────────── */
-
 .page-shell {
     display: flex !important;
     height: 100vh !important;
@@ -1953,34 +1893,27 @@ footer {
     height: 100vh !important;
     overflow-y: auto !important;
     min-width: 0 !important;
-    /* Reserve scrollbar gutter so content width never shifts —
-       prevents the 8px gap that appears on the footer's right edge */
+
     scrollbar-gutter: stable;
 }
 
-/* ── Full-bleed footer inside page-shell ───────────────────
-   The footer must span 100% of the .page-content column,
-   independent of the centred max-width content above it.    */
 .page-content .main-footer,
 .page-content footer {
-    /* Push footer down below page content */
+
     margin-top: 80px;
-    /* Full width of the scroll container — not limited by any ancestor max-width */
+
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    /* Cancel any inherited auto-margins that could shrink the element */
+
     margin-left: 0;
     margin-right: 0;
-    /* Block context so width:100% is unambiguous */
+
     display: block;
-    /* Prevent interior overflow from clipping the background */
+
     overflow: visible;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   AUTH NAV — User profile menu (global, injected by global.js)
-═══════════════════════════════════════════════════════════ */
 .user-profile-menu {
     position: relative;
     display: inline-flex;
@@ -2057,7 +1990,6 @@ footer {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Admin dashboard user chip ────────────────────────── */
 .admin-user-chip {
     display: inline-flex;
     align-items: center;
@@ -2088,7 +2020,6 @@ footer {
     color: #C0392B !important;
 }
 
-/* ─── Login gate toast (package details page) ─────────── */
 .login-gate-toast {
     display: flex;
     align-items: center;
@@ -2249,7 +2180,6 @@ footer {
     }
 }
 
-
 body.info-page,
 body.info-page a,
 body.info-page button {
@@ -2302,10 +2232,6 @@ body.luxury-aesthetic .modal-overlay a,
 body.luxury-aesthetic .modal-overlay .btn {
     cursor: pointer !important;
 }
-
-/* ═══════════════════════════════════════════════════════
-   HAMBURGER MENUS & MOBILE RESPONSIVENESS
-═══════════════════════════════════════════════════════ */
 
 .hamburger-btn {
     display: none;
@@ -2421,7 +2347,6 @@ body.luxury-aesthetic .modal-overlay .btn {
         overflow: hidden !important;
     }
 
-    /* ── page-sidebar off-canvas ── */
     .page-sidebar {
         position: fixed !important;
         left: -280px !important;
@@ -2470,7 +2395,6 @@ body.luxury-aesthetic .modal-overlay .btn {
         padding-top: 58px !important;
     }
 
-    /* ── dashboard-sidebar off-canvas (all pages) ── */
     .dashboard-sidebar {
         position: fixed;
         left: -280px;
@@ -2492,7 +2416,6 @@ body.luxury-aesthetic .modal-overlay .btn {
         padding-top: 58px;
     }
 
-    /* ── Footer inside page-content (package pages) ── */
     .page-content .main-footer {
         margin-top: 40px !important;
         padding: 50px 1.25rem 30px !important;
@@ -2514,7 +2437,6 @@ body.luxury-aesthetic .modal-overlay .btn {
         padding-top: 20px !important;
     }
 
-    /* ── Footer inside dashboard pages ── */
     .dashboard-main .main-footer {
         width: 100% !important;
         margin-left: 0 !important;

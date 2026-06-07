@@ -1,5 +1,3 @@
-
-
 :root {
     --bg-error: #050505;
     --glass-error: rgba(26, 26, 26, 0.6);
@@ -38,7 +36,6 @@
     z-index: -1;
     transition: transform 10s ease-out;
 }
-
 
 .error-card {
     max-width: 600px;
@@ -139,7 +136,6 @@
     letter-spacing: 0.1em;
 }
 
-
 .reveal-up {
     animation: revealUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
@@ -149,16 +145,15 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-
 @media (max-width: 768px) {
     .error-card {
         padding: 40px var(--space-lg);
     }
-    
+
     .error-actions {
         flex-direction: column;
     }
-    
+
     .btn-gold, .btn-outline {
         width: 100%;
     }

@@ -91,11 +91,8 @@
 
                         <div style="display:flex;gap:2rem;align-items:start;margin-bottom:2rem;flex-wrap:wrap;">
                             <div id="profileAvatarWrap" style="position:relative;width:100px;height:100px;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold-primary);border-radius:50%;background:rgba(197,160,89,0.1);overflow:hidden;">
-                                <% if (user.image) { %>
-                                <img id="profileAvatarImg" src="<%= user.image %>" alt="<%= user.name %>" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-                                <% } else { %>
-                                <i id="profileAvatarIcon" class="fas fa-user-circle" style="font-size:5rem;color:var(--gold-primary);"></i>
-                                <% } %>
+                                <img id="profileAvatarImg" src="<%= user.image || '' %>" alt="<%= user.name %>" style="width:100%;height:100%;object-fit:cover;border-radius:50%;<%= user.image ? '' : 'display:none;' %>">
+                                <i id="profileAvatarIcon" class="fas fa-user-circle" style="font-size:5rem;color:var(--gold-primary);<%= user.image ? 'display:none;' : '' %>"></i>
                             </div>
                             <div style="flex:1;min-width:200px;">
                                 <h3 id="userNameDisplay" style="margin-bottom:0.5rem;"><%= user.name %></h3>
@@ -208,7 +205,6 @@
             else                           { field.type = 'password'; icon.className = 'fas fa-eye'; }
         }
 
-        // Tab switching
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -218,7 +214,6 @@
             });
         });
 
-        // Edit/Save/Cancel personal info
         const editBtn = document.getElementById('editPersonalBtn');
         const saveBtn = document.getElementById('savePersonalBtn');
         const cancelBtn = document.getElementById('cancelPersonalBtn');
@@ -262,8 +257,6 @@
             }
         });
 
-
-        // Delete account
         document.getElementById('deleteAccountBtn').addEventListener('click', () => {
             document.getElementById('deleteModal').classList.remove('hidden');
         });
@@ -272,12 +265,99 @@
         });
         document.getElementById('confirmDeleteBtn').addEventListener('click', async () => {
             try {
-                const res = await fetch('/api/users/me', { method: 'DELETE' });
+                const res = await fetch('/api/users/account', { method: 'DELETE', credentials: 'include' });
                 if (res.ok) {
                     window.location.href = '/';
                 }
             } catch (err) { alert('Failed to delete account.'); }
         });
+
+        (function () {
+            const uploadBtn = document.getElementById('uploadPhotoBtn');
+            const removeBtn = document.getElementById('removePhotoBtn');
+            const fileInput = document.getElementById('profilePhotoInput');
+            const imgEl     = document.getElementById('profileAvatarImg');
+            const iconEl    = document.getElementById('profileAvatarIcon');
+
+            if (!uploadBtn || !fileInput) return;
+            uploadBtn.dataset.photoInit = '1';
+
+            function photoAlert(msg, type) {
+                const c = document.getElementById('alertContainer');
+                if (!c) return;
+                c.textContent        = msg;
+                c.style.background   = type === 'success' ? '#C5A059' : '#dc3545';
+                c.style.color        = '#fff';
+                c.style.padding      = '12px 20px';
+                c.style.borderRadius = '8px';
+                c.style.position     = 'fixed';
+                c.style.top          = '20px';
+                c.style.right        = '20px';
+                c.style.zIndex       = '9999';
+                c.style.fontWeight   = '600';
+                c.style.boxShadow    = '0 4px 20px rgba(0,0,0,0.15)';
+                c.classList.remove('hidden');
+                setTimeout(() => c.classList.add('hidden'), 3500);
+            }
+
+            uploadBtn.addEventListener('click', () => fileInput.click());
+
+            fileInput.addEventListener('change', () => {
+                const file = fileInput.files && fileInput.files[0];
+                if (!file) return;
+                if (!file.type.startsWith('image/')) {
+                    photoAlert('Please choose an image file.', 'error');
+                    fileInput.value = '';
+                    return;
+                }
+                if (file.size > 2 * 1024 * 1024) {
+                    photoAlert('Photo must be smaller than 2 MB.', 'error');
+                    fileInput.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = e => {
+                    if (imgEl) { imgEl.src = e.target.result; imgEl.style.display = 'block'; }
+                    if (iconEl) iconEl.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+
+                const formData = new FormData();
+                formData.append('avatar', file);
+                fetch('/api/users/avatar', { method: 'PUT', credentials: 'include', body: formData })
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            if (imgEl) { imgEl.src = data.data.imageUrl; imgEl.style.display = 'block'; }
+                            if (iconEl) iconEl.style.display = 'none';
+                            if (removeBtn) removeBtn.classList.remove('hidden');
+                            photoAlert('Profile photo updated!', 'success');
+                        } else {
+                            photoAlert(data.message || 'Upload failed.', 'error');
+                        }
+                    })
+                    .catch(() => photoAlert('Upload failed.', 'error'));
+
+                fileInput.value = '';
+            });
+
+            if (removeBtn) {
+                removeBtn.addEventListener('click', async () => {
+                    if (!confirm('Remove your profile photo?')) return;
+                    try {
+                        const res = await fetch('/api/users/avatar', { method: 'DELETE', credentials: 'include' });
+                        if (!res.ok) throw new Error();
+                        if (imgEl) { imgEl.src = ''; imgEl.style.display = 'none'; }
+                        if (iconEl) iconEl.style.display = 'block';
+                        removeBtn.classList.add('hidden');
+                        photoAlert('Profile photo removed.', 'success');
+                    } catch {
+                        photoAlert('Failed to remove photo.', 'error');
+                    }
+                });
+            }
+        }());
 
 </script>
     <script src="/js/global.js"></script>

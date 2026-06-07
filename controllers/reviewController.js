@@ -61,6 +61,17 @@ const getAllReviews = async (req, res, next) => {
   }
 };
 
+const getMyReviews = async (req, res, next) => {
+  try {
+    const reviews = await Review.find({ userId: req.user._id })
+      .populate('packageId', 'name type')
+      .sort('-date');
+    res.status(200).json({ status: 'success', data: { reviews } });
+  } catch (err) {
+    next(err);
+  }
+};
+
 const deleteReview = async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id);
@@ -81,25 +92,19 @@ const deleteReview = async (req, res, next) => {
   }
 };
 
-const updateReview = async (req, res, next) => {
+const uploadReviewPhotos = async (req, res, next) => {
   try {
-    const review = await Review.findById(req.params.id);
+    const photos = req.files ? req.files.map(f => f.path) : [];
+    const review = await Review.findByIdAndUpdate(
+      req.params.id,
+      { photos, photosCount: photos.length },
+      { new: true }
+    );
     if (!review) return next(new AppError('Review not found.', 404));
-
-    if (review.userId.toString() !== req.user._id.toString()) {
-      return next(new AppError('You can only edit your own reviews.', 403));
-    }
-
-    const { rating, title, text } = req.body;
-    review.rating = rating || review.rating;
-    review.title  = title  || review.title;
-    review.text   = text   || review.text;
-    await review.save();
-
     res.status(200).json({ status: 'success', data: { review } });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = { createReview, getPackageReviews, getAllReviews, deleteReview, updateReview };
+module.exports = { createReview, getPackageReviews, getAllReviews, getMyReviews, deleteReview, uploadReviewPhotos };

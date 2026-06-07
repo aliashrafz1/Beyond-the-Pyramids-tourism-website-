@@ -34,7 +34,8 @@ function validateNationality() {
 
 function validatePhone() {
   const digits = (document.getElementById('phone')?.value || '').replace(/\D/g, '');
-  if (digits.length < 7) { showError('phone_error', 'Phone number must be at least 7 digits'); return false; }
+  if (digits.length < 7)  { showError('phone_error', 'Phone number must be at least 7 digits');      return false; }
+  if (digits.length > 12) { showError('phone_error', 'Phone number cannot exceed 12 digits'); return false; }
   clearError('phone_error'); return true;
 }
 
@@ -61,18 +62,16 @@ function validateConfirmPassword() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  init3DTilt();
   initAtmosphericReveal();
   initGlowInputs();
 
-  // Live validation listeners
   document.getElementById('firstname')?.addEventListener('input', validateFirstname);
   document.getElementById('lastname')?.addEventListener('input', validateLastname);
   document.getElementById('dob')?.addEventListener('change', validateDob);
   document.getElementById('nationality')?.addEventListener('change', validateNationality);
   const phoneInput = document.getElementById('phone');
   phoneInput?.addEventListener('input', () => {
-    phoneInput.value = phoneInput.value.replace(/[a-zA-Z]/g, '');
+    phoneInput.value = phoneInput.value.replace(/[a-zA-Z]/g, '').slice(0, 12);
     validatePhone();
   });
   document.getElementById('email')?.addEventListener('input', validateEmail);
@@ -124,22 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-function init3DTilt() {
-  document.querySelectorAll('.tilt-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const rotateX = ((e.clientY - rect.top  - rect.height / 2) / (rect.height / 2)) * -5;
-      const rotateY = ((e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2)) *  5;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      card.style.boxShadow = `${rotateY * -1}px ${rotateX}px 30px rgba(0,0,0,0.3), 0 15px 45px rgba(0,0,0,0.1)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      card.style.boxShadow = '';
-    });
-  });
-}
 
 function initAtmosphericReveal() {
   document.querySelectorAll('.reveal-item').forEach((el, i) => {

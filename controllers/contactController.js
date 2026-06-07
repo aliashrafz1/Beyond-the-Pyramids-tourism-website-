@@ -3,14 +3,13 @@ const { AppError } = require('../app');
 
 const createTicket = async (req, res, next) => {
   try {
-    const { name, email, subject, message, category } = req.body;
+    const { name, email, subject, message } = req.body;
 
     const ticket = await Contact.create({
       subject,
       email,
       customer: name || '',
       message,
-      category: category || 'General',
       customerId: req.user ? req.user._id : null,
     });
 
@@ -27,8 +26,7 @@ const createTicket = async (req, res, next) => {
 const getAllTickets = async (req, res, next) => {
   try {
     const filter = {};
-    if (req.query.status)   filter.status   = req.query.status;
-    if (req.query.priority) filter.priority = req.query.priority;
+    if (req.query.status) filter.status = req.query.status;
 
     const tickets = await Contact.find(filter)
       .populate('customerId', 'name email')

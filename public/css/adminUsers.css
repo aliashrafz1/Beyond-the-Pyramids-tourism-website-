@@ -1,6 +1,3 @@
-
-
-
 body {
     font-family: var(--font-body);
     background-color: var(--bg-primary);
@@ -9,12 +6,10 @@ body {
     overflow-x: hidden;
 }
 
-
 .dashboard-shell {
     display: flex;
     height: 100vh;
 }
-
 
 .dashboard-sidebar {
     width: var(--sidebar-width);
@@ -123,7 +118,6 @@ body {
     background: rgba(255, 82, 82, 0.1);
 }
 
-
 .dashboard-main {
     flex: 1;
     overflow-y: auto;
@@ -148,7 +142,6 @@ body {
 .dashboard-header p {
     color: var(--color-text-muted);
 }
-
 
 .stats-grid {
     display: grid;
@@ -193,7 +186,6 @@ body {
     font-weight: 700;
     color: var(--obsidian-black);
 }
-
 
 .toolbar {
     background: white;
@@ -255,7 +247,6 @@ body {
     cursor: pointer;
 }
 
-
 .table-container {
     background: white;
     border-radius: 24px;
@@ -292,7 +283,6 @@ tr:last-child td {
     border-bottom: none;
 }
 
-
 .badge-role {
     padding: 6px 14px;
     border-radius: 30px;
@@ -312,10 +302,8 @@ tr:last-child td {
 .role-traveler { background: rgba(197, 160, 89, 0.1); color: var(--role-traveler); }
 .role-organizer { background: rgba(123, 31, 162, 0.1); color: #7B1FA2; }
 
-
 .status-active { color: var(--color-success); font-weight: 700; }
 .status-inactive { color: var(--color-danger); font-weight: 700; }
-
 
 .modal-overlay {
     position: fixed;
@@ -380,7 +368,6 @@ tr:last-child td {
     gap: 15px;
 }
 
-
 .trip-row-card {
     background: white;
     border: 1px solid var(--color-border);
@@ -415,7 +402,6 @@ tr:last-child td {
     background: var(--color-danger);
     color: white;
 }
-
 
 .btn-primary {
     background: var(--gold-primary);
@@ -460,7 +446,6 @@ tr:last-child td {
     color: var(--color-danger);
 }
 
-
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -489,10 +474,6 @@ tr:last-child td {
     outline: none;
 }
 
-
-/* ══════════════════════════════════════════
-   DARK MODE OVERRIDES
-   ══════════════════════════════════════════ */
 [data-theme="dark"] body {
     background-color: #0A0A0A;
     color: #F2F2F2;
@@ -586,7 +567,6 @@ tr:last-child td {
     color: #F2F2F2;
 }
 
-/* ─── 2-Role Badge System ─── */
 .badge-admin {
     display: inline-flex;
     align-items: center;
@@ -620,7 +600,6 @@ tr:last-child td {
 [data-theme="dark"] .badge-admin { background: rgba(197,160,89,0.15); color: var(--gold-primary); border-color: rgba(197,160,89,0.35); }
 [data-theme="dark"] .badge-user  { background: rgba(39,174,96,0.15);  color: #4ccc80;            border-color: rgba(39,174,96,0.3); }
 
-/* ─── Status Badges ─── */
 .badge-active {
     display: inline-block;
     padding: 4px 12px;
@@ -648,7 +627,6 @@ tr:last-child td {
 [data-theme="dark"] .badge-active    { background: rgba(39,174,96,0.15);  color: #4ccc80;  border-color: rgba(39,174,96,0.3); }
 [data-theme="dark"] .badge-suspended { background: rgba(220,53,69,0.15); color: #ff7b87; border-color: rgba(220,53,69,0.3); }
 
-/* ─── User cell (avatar + name/id) ─── */
 .user-cell {
     display: flex;
     align-items: center;
@@ -695,7 +673,6 @@ tr:last-child td {
 
 [data-theme="dark"] .user-name { color: #F2F2F2; }
 
-/* ─── Action icon buttons ─── */
 .actions-cell {
     display: flex;
     gap: 8px;
@@ -742,7 +719,6 @@ tr:last-child td {
     transform: translateY(-1px);
 }
 
-/* ─── Wide table ─── */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -753,7 +729,6 @@ tr:last-child td {
     overflow-x: auto;
 }
 
-/* ─── Empty state ─── */
 .empty-state {
     padding: 60px 20px;
     text-align: center;
@@ -772,7 +747,6 @@ tr:last-child td {
     font-size: 1rem;
 }
 
-/* ─── Modal close ─── */
 .modal-close {
     background: none;
     border: none;
@@ -834,10 +808,8 @@ tr:last-child td {
     pointer-events: none;
 }
 
-/* ─── Full width form group ─── */
 .full-width { grid-column: 1 / -1; }
 
-/* ─── btn-primary icon ─── */
 .btn-primary {
     display: inline-flex;
     align-items: center;

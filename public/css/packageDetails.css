@@ -1,27 +1,19 @@
-/* =============================================
-   PACKAGE DETAILS — Cinematic Heritage Folio
-   Design: Sidebar shell + cinematic hero scroll
-   ============================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
-/* ── Reset & base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: 'Jost', sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
-    overflow: hidden; /* full-viewport shell, scroll inside .dash-scroll-area */
+    overflow: hidden;
 }
 
-/* ── Override: package scroll area needs its own padding ── */
 .pkg-scroll-area {
-    padding: 0 !important; /* hero goes edge-to-edge */
+    padding: 0 !important;
     overflow-y: auto;
 }
 
-/* ── Loading skeleton ── */
 .pkg-loading {
     display: flex;
     flex-direction: column;
@@ -40,12 +32,9 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ══════════════════════════════════════════
-   HERO — Full-bleed cinematic opener
-══════════════════════════════════════════ */
 .pkg-hero {
     position: relative;
-    height: 72vh;          /* shorter inside the sidebar shell */
+    height: 72vh;
     min-height: 480px;
     overflow: hidden;
     display: flex;
@@ -63,7 +52,6 @@ body {
 }
 .pkg-hero.is-visible .pkg-hero__bg { transform: scale(1); }
 
-/* gradient overlay: image visible at top, dark at bottom for text */
 .pkg-hero__overlay {
     position: absolute; inset: 0;
     z-index: 1;
@@ -73,7 +61,6 @@ body {
         rgba(0,0,0,0.10) 100%);
 }
 
-/* Torn-edge SVG divider at the bottom of the hero */
 .pkg-hero__tear {
     position: absolute;
     z-index: 2;
@@ -165,21 +152,17 @@ body {
     font-size: 0.8rem;
 }
 
-/* ══════════════════════════════════════════
-   LAYOUT — Two-column content + sticky rail
-══════════════════════════════════════════ */
 .pkg-layout {
     display: grid;
     grid-template-columns: 1fr 360px;
     gap: 2.5rem;
-    max-width: 100%;          /* fill available width inside sidebar */
+    max-width: 100%;
     padding: 3rem 3rem 5rem;
     align-items: start;
 }
 
 .pkg-content { min-width: 0; }
 
-/* ── Gold rule section headings ── */
 .pkg-section-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.8rem;
@@ -199,7 +182,6 @@ body {
 }
 .pkg-section-title i { color: var(--gold-primary); margin-right: 0.6rem; font-size: 1.3rem; }
 
-/* ── Lead description ── */
 .pkg-lead {
     font-size: 1.125rem;
     line-height: 1.75;
@@ -209,7 +191,6 @@ body {
     font-family: 'Cormorant Garamond', serif;
 }
 
-/* ── Feature pills (highlights) ── */
 .pkg-highlights {
     display: flex;
     flex-wrap: wrap;
@@ -234,15 +215,10 @@ body {
 }
 .pkg-highlight-pill i { color: var(--gold-primary); }
 
-/* ── Content section wrapper ── */
 .pkg-section { margin-bottom: 4rem; }
 
-/* ══════════════════════════════════════════
-   ITINERARY — Architectural timeline
-══════════════════════════════════════════ */
 .pkg-timeline { position: relative; padding-left: 2.5rem; }
 
-/* vertical spine */
 .pkg-timeline::before {
     content: '';
     position: absolute;
@@ -260,7 +236,6 @@ body {
 }
 .pkg-day.revealed { opacity: 1; transform: none; }
 
-/* circle node */
 .pkg-day::before {
     content: '';
     position: absolute;
@@ -311,9 +286,6 @@ body {
     border-radius: 100px;
 }
 
-/* ══════════════════════════════════════════
-   INCLUDED / EXCLUDED grid
-══════════════════════════════════════════ */
 .pkg-services {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -355,9 +327,6 @@ body {
 .included li i { color: #6fcf97; }
 .excluded li i { color: var(--text-secondary); opacity: 0.5; }
 
-/* ══════════════════════════════════════════
-   REVIEWS section
-══════════════════════════════════════════ */
 .pkg-review-header {
     display: flex;
     align-items: center;
@@ -402,9 +371,40 @@ body {
 .pkg-review-date { font-size: 0.75rem; color: var(--text-secondary); }
 .pkg-review-text { font-size: 0.875rem; line-height: 1.65; color: var(--text-secondary); font-style: italic; }
 
-/* ══════════════════════════════════════════
-   BOOKING RAIL — sticky floating panel
-══════════════════════════════════════════ */
+.pkg-deluxe-extras {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    border-radius: 12px;
+    background: rgba(197, 160, 89, 0.06);
+}
+.pkg-deluxe-extras h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold-primary, #C5A059);
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.pkg-deluxe-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.5rem 1.5rem;
+}
+.pkg-deluxe-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.pkg-deluxe-list li i { color: var(--gold-primary, #C5A059); margin-top: 2px; flex-shrink: 0; }
+
 .pkg-rail {
     position: sticky;
     top: 2rem;
@@ -415,7 +415,6 @@ body {
     box-shadow: 0 24px 48px rgba(0,0,0,0.25);
 }
 
-/* thin gold top border */
 .pkg-rail::before {
     content: '';
     display: block;
@@ -440,7 +439,6 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* Price tiers */
 .pkg-tiers { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
 
 .pkg-tier {
@@ -490,7 +488,6 @@ body {
     line-height: 1.4;
 }
 
-/* Rail sub-labels */
 .pkg-rail__label {
     font-size: 0.7rem;
     font-weight: 600;
@@ -504,14 +501,12 @@ body {
 }
 .pkg-rail__label i { color: var(--gold-primary); }
 
-/* Divider */
 .pkg-rail__divider {
     height: 1px;
     background: var(--border-color);
     margin: 1.25rem 0;
 }
 
-/* Calendar */
 .pkg-calendar-header {
     display: flex;
     justify-content: space-between;
@@ -592,7 +587,6 @@ body {
 .pkg-leg-dot.booked { background: rgba(255,100,100,0.5); }
 .pkg-leg-dot.selected { background: var(--gold-primary); }
 
-/* Traveller counter */
 .pkg-counter {
     display: flex;
     align-items: center;
@@ -624,7 +618,6 @@ body {
     text-align: center;
 }
 
-/* CTA button */
 .pkg-book-btn {
     width: 100%;
     padding: 1rem;
@@ -682,9 +675,6 @@ body {
 }
 .pkg-guarantee-item i { color: var(--gold-primary); }
 
-/* ══════════════════════════════════════════
-   Not-found state
-══════════════════════════════════════════ */
 .pkg-not-found {
     display: flex;
     flex-direction: column;
@@ -697,17 +687,11 @@ body {
 .pkg-not-found h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 0.75rem; }
 .pkg-not-found p { color: var(--text-secondary); max-width: 400px; }
 
-/* ══════════════════════════════════════════
-   Footer inside scroll area
-══════════════════════════════════════════ */
 .pkg-footer {
     margin-top: 0;
     width: 100%;
 }
 
-/* ══════════════════════════════════════════
-   Active sidebar item for package pages
-══════════════════════════════════════════ */
 .sidebar-nav ul li.active a {
     background: var(--gold-primary);
     color: white;
@@ -715,9 +699,6 @@ body {
 }
 .sidebar-nav ul li.active a i { color: white; opacity: 1; }
 
-/* ══════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════ */
 @media (max-width: 1100px) {
     .pkg-layout { grid-template-columns: 1fr; }
     .pkg-rail { position: static; }
@@ -731,7 +712,6 @@ body {
     .pkg-hero__title { font-size: 2rem; }
 }
 
-/* ── Weather Widget ── */
 .pkg-weather-widget {
     margin: 0.75rem 0;
     padding: 0.65rem 0.75rem;

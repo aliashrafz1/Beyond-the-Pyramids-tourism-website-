@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', function () {
     if (window.LoginGate && !LoginGate.requireLogin({ message: 'You must be logged in to write reviews.' })) {
         return;
@@ -12,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupFormSubmission();
 
     initAnimations();
+    loadMyReviews();
 });
 
 function displayUserName() {
@@ -232,6 +231,16 @@ function setupFormSubmission() {
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.message || 'Review submission failed');
 
+                if (selectedFiles.length > 0 && data.data?.review?._id) {
+                    const formData = new FormData();
+                    selectedFiles.forEach(file => formData.append('photos', file));
+                    await fetch('/api/reviews/' + data.data.review._id + '/photos', {
+                        method: 'POST',
+                        credentials: 'include',
+                        body: formData,
+                    });
+                }
+
                 showFeedback('Review submitted.', 'success');
                 document.getElementById('success-modal').style.display = 'flex';
             } catch (err) {
@@ -248,7 +257,41 @@ function closeModal() {
     window.location.href = '/dashboard';
 }
 
+async function loadMyReviews() {
+    try {
+        const res = await fetch('/api/reviews/mine', { credentials: 'include' });
+        const data = await res.json();
+        renderMyReviews(data.data?.reviews || []);
+    } catch (e) {}
+}
 
+function renderMyReviews(reviews) {
+    const list = document.getElementById('my-reviews-list');
+    if (!list) return;
+    if (!reviews.length) {
+        list.innerHTML = '<p style="color:var(--color-text-muted);padding:1rem 0;">You have not submitted any reviews yet.</p>';
+        return;
+    }
+    list.innerHTML = reviews.map(r => `
+        <div class="review-item" id="my-review-${r._id}">
+            <div class="review-header">
+                <strong>${r.packageId?.name || 'Package'}</strong>
+                <span style="color:#F1C40F;">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+                <span class="review-date">${r.date ? r.date.slice(0, 10) : ''}</span>
+            </div>
+            <p class="review-text">"${r.title}" — ${r.text}</p>
+            <div style="display:flex;gap:0.5rem;margin-top:0.5rem;">
+                <button class="btn btn--sm" style="color:#dc3545" onclick="deleteMyReview('${r._id}')">Delete</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function deleteMyReview(id) {
+    if (!confirm('Delete this review?')) return;
+    const res = await fetch('/api/reviews/' + id, { method: 'DELETE', credentials: 'include' });
+    if (res.ok || res.status === 204) document.getElementById('my-review-' + id)?.remove();
+}
 
 function initAnimations() {
     const observer = new IntersectionObserver((entries) => {

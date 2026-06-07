@@ -34,7 +34,6 @@ const packageSchema = new mongoose.Schema(
     guidedTour:          { type: String, enum: ['yes', 'no', ''], default: '' },
 
     duration:         { type: Number, default: null },
-    languages:        { type: String, default: '' },
     minGroup:         { type: Number, default: 1 },
     maxGroup:         { type: Number, default: 15 },
     includedServices: { type: String, default: '' },
@@ -55,8 +54,11 @@ const packageSchema = new mongoose.Schema(
         day:        { type: Number },
         title:      { type: String },
         activities: { type: String },
+        desc:       { type: String, default: '' },
+        meal:       { type: String, default: '' },
       },
     ],
+    deluxeExtras: { type: String, default: '' },
   },
   { timestamps: true }
 );

@@ -1,4 +1,3 @@
-
 let activeBooking = null;
 
 document.addEventListener('DOMContentLoaded', () => {

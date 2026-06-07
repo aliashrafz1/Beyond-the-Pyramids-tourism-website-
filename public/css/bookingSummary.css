@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Luxury Editorial Itinerary - Booking Summary
-   ========================================================================== */
-
-/* Page Level container */
 .editorial-page {
     padding: var(--space-xl);
     display: flex;
@@ -11,11 +6,10 @@
     min-height: 100%;
 }
 
-/* The core document wrapper */
 .itinerary-document {
     width: 100%;
     max-width: 1000px;
-    background-color: var(--bg-alt); /* slightly elevated neutral */
+    background-color: var(--bg-alt);
     position: relative;
     border-left: 2px solid var(--gold-primary);
     padding: var(--space-2xl);
@@ -23,7 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-2xl);
-    /* Subtle noise texture for a physical paper feel */
+
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
@@ -32,7 +26,6 @@
     box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
 }
 
-/* Header Section */
 .itinerary-header {
     display: flex;
     justify-content: space-between;
@@ -50,14 +43,13 @@
     line-height: 1.1;
 }
 
-/* Meta Data overlapping */
 .itinerary-meta {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     background: rgba(0, 0, 0, 0.03);
     padding: var(--space-md) var(--space-xl);
-    transform: translateY(-40px); /* Breaking the grid intentionally */
+    transform: translateY(-40px);
     border-bottom: 1px solid var(--gold-primary);
 }
 
@@ -93,14 +85,12 @@
 .status-badge.pending { color: #f59e0b; }
 .status-badge.confirmed { color: #10b981; }
 
-/* Body Layout */
 .itinerary-body {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--space-3xl);
 }
 
-/* Typography & Sections */
 .editorial-section {
     margin-bottom: var(--space-2xl);
 }
@@ -114,7 +104,6 @@
     margin-bottom: var(--space-lg);
 }
 
-/* Grid for Details */
 .editorial-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -140,7 +129,6 @@
     color: var(--text-primary);
 }
 
-/* List for Policy */
 .editorial-list {
     list-style: none;
     padding: 0;
@@ -165,7 +153,6 @@
     width: 20px;
 }
 
-/* Pricing Sidebar */
 .editorial-price {
     display: flex;
     flex-direction: column;
@@ -190,7 +177,6 @@
     color: var(--gold-primary);
 }
 
-/* Action Buttons */
 .concierge-action {
     display: flex;
     flex-direction: column;
@@ -234,21 +220,20 @@
     border-color: var(--text-primary);
 }
 
-/* Responsive adjustments */
 @media (max-width: 900px) {
     .itinerary-body {
         grid-template-columns: 1fr;
     }
-    
+
     .itinerary-meta {
         transform: translateY(0);
     }
-    
+
     .itinerary-header {
         flex-direction: column;
         gap: var(--space-lg);
     }
-    
+
     .itinerary-header h2 {
         max-width: 100%;
     }

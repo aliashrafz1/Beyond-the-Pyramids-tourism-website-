@@ -1,15 +1,29 @@
 const multer = require('multer');
-const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
 const { AppError } = require('../app');
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '..', 'uploads'));
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key:    process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const avatarStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder:           'beyond-pyramids/avatars',
+    allowed_formats:  ['jpg', 'jpeg', 'png', 'webp'],
+    transformation:   [{ width: 400, height: 400, crop: 'fill', quality: 'auto' }],
   },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+});
+
+const packageStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder:          'beyond-pyramids/packages',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+    transformation:  [{ width: 1200, quality: 'auto' }],
   },
 });
 
@@ -22,15 +36,19 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const upload = multer({
-  storage,
-  fileFilter,
-  limits: {
-    fileSize: parseInt(process.env.MAX_FILE_SIZE) || 2 * 1024 * 1024,
+const limits = { fileSize: parseInt(process.env.MAX_FILE_SIZE) || 2 * 1024 * 1024 };
+
+const reviewStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder:          'beyond-pyramids/reviews',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+    transformation:  [{ width: 1000, quality: 'auto' }],
   },
 });
 
-const uploadAvatar       = upload.single('avatar');
-const uploadPackageImage = upload.single('image');
+const uploadAvatar        = multer({ storage: avatarStorage,  fileFilter, limits }).single('avatar');
+const uploadPackageImage  = multer({ storage: packageStorage, fileFilter, limits }).single('image');
+const uploadReviewPhotos  = multer({ storage: reviewStorage,  fileFilter, limits }).array('photos', 5);
 
-module.exports = { uploadAvatar, uploadPackageImage };
+module.exports = { uploadAvatar, uploadPackageImage, uploadReviewPhotos };

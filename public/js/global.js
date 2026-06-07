@@ -43,16 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.AccountChip) window.AccountChip.init();
 });
 
-
 window.LoginGate = {
-    getPathPrefix: function () {
-        const path = window.location.pathname;
-        const isRoot = path.endsWith('/index.html') || path.endsWith('/') ||
-            path.endsWith('Beyond-the-Pyramids-tourism-website-') ||
-            path.includes('LandingPage');
-        return isRoot ? './' : '../';
-    },
-
     isLoggedIn: function () {
         const u = window.SERVER_USER || (window.SERVER_DATA && window.SERVER_DATA.user);
         return !!(u && (u.email || u._id));
@@ -212,54 +203,6 @@ window.LoginGate = {
     }
 };
 
-
-window.PlatformErrorHandler = {
-    redirectToError: function (type) {
-        if (window.location.pathname.includes('/ErrorPages/')) return;
-
-        const path = window.location.pathname;
-        const depth = (path.match(/\//g) || []).length;
-        let prefix = './';
-        if (depth >= 1) prefix = '../';
-
-        const errorPaths = {
-            403: 'ErrorPages/403-Access Denied/403.html',
-            404: 'ErrorPages/404-PageNotFound/404.html',
-            500: 'ErrorPages/500-Server Error/500.html'
-        };
-
-        const target = errorPaths[type] || errorPaths[500];
-        window.location.href = prefix + target;
-    },
-
-    catchFetch: function (response) {
-        if (!response.ok) {
-            if (response.status === 403) this.redirectToError(403);
-            if (response.status === 404) this.redirectToError(404);
-            if (response.status >= 500) this.redirectToError(500);
-            return false;
-        }
-        return true;
-    },
-
-    checkAccess: function (requiredRole) {
-        const user = window.SERVER_USER;
-        if (!user) {
-            if (window.LoginGate) LoginGate.show();
-            else window.location.href = '/login';
-            return false;
-        }
-        const currentRole = String(user.role || '').toLowerCase();
-        const neededRole  = String(requiredRole || '').toLowerCase();
-        if (requiredRole && currentRole !== neededRole && currentRole !== 'admin') {
-            alert('Access Denied: You do not have permission to view this page.');
-            window.location.href = '/';
-            return false;
-        }
-        return true;
-    }
-};
-
 window.addEventListener('pageshow', () => {
     if (window.LoginGate) LoginGate.hide();
 });
@@ -322,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalThemeToggle();
     initHamburgerMenus();
 });
-
 
 function populateDashboardAvatar() {
     const avatarEl = document.getElementById('user-avatar');
@@ -432,7 +374,6 @@ function updateAuthUI() {
 }
 
 function initHamburgerMenus() {
-    // ── Sidebar hamburger (user + admin pages) ──────────────────────
     const sidebar = document.querySelector('.dashboard-sidebar, .page-sidebar');
     const mainContent = document.querySelector('.dashboard-main, .page-content');
 
@@ -490,7 +431,6 @@ function initHamburgerMenus() {
         });
     }
 
-    // ── Landing page nav hamburger with overflow detection ──────────
     const navContainer = document.querySelector('.nav-container');
     const navMenu = document.querySelector('.nav-menu');
     if (!navContainer || !navMenu) return;
@@ -507,7 +447,6 @@ function initHamburgerMenus() {
     navOverlay.className = 'mobile-nav-overlay';
     document.body.appendChild(navOverlay);
 
-    // Measure natural widths once at init (before any collapsing state exists)
     navHamburger.style.display = 'none';
     const _logoW = (navContainer.querySelector('.logo') || {}).offsetWidth || 0;
     const _actionsW = (navContainer.querySelector('.nav-actions') || {}).offsetWidth || 0;

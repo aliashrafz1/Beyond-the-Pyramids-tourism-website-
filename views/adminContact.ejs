@@ -52,7 +52,6 @@
             </div>
         </header>
 
-        <!-- Stats -->
         <section class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-headset"></i></div>
@@ -68,7 +67,6 @@
             </div>
         </section>
 
-        <!-- Filters -->
         <div style="display:flex;gap:1rem;align-items:center;padding:0 0 1.5rem;">
             <select id="status-filter" style="background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text);padding:0.5rem 1rem;border-radius:6px;">
                 <option value="">All Statuses</option>
@@ -78,7 +76,6 @@
             <input type="text" id="search-input" placeholder="Search subject or customer..." style="background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text);padding:0.5rem 1rem;border-radius:6px;width:260px;">
         </div>
 
-        <!-- Tickets Table -->
         <section class="card">
             <div style="overflow-x:auto;">
                 <table class="activity-table" style="width:100%;border-collapse:collapse;">
@@ -131,7 +128,6 @@
     </main>
 </div>
 
-<!-- Ticket Detail Modal -->
 <div id="ticket-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
     <div style="background:var(--color-surface);border-radius:12px;padding:2rem;width:min(600px,95vw);max-height:90vh;overflow-y:auto;position:relative;">
         <button id="close-modal" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;color:var(--color-text-muted);cursor:pointer;">&times;</button>

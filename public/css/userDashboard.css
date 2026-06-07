@@ -1,4 +1,3 @@
-/* ===== SIDEBAR (unchanged) ===== */
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -54,7 +53,6 @@ body {
 .theme-toggle-btn { width: 100%; justify-content: flex-start; background: rgba(0,0,0,0.03); border: 1px solid var(--border-color); }
 .logout-link { font-size: var(--text-sm); color: var(--color-danger); padding: 8px 16px; display: flex; align-items: center; gap: var(--space-sm); }
 
-/* ===== MAIN AREA ===== */
 .dashboard-main {
     flex: 1;
     display: flex;
@@ -63,7 +61,6 @@ body {
     position: relative;
 }
 
-/* --- Top Bar --- */
 .dash-topbar {
     display: flex;
     justify-content: space-between;
@@ -134,7 +131,6 @@ body {
 }
 .topbar-avatar:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(197,160,89,0.4); }
 
-/* --- Scroll Area --- */
 .dash-scroll-area {
     flex: 1;
     overflow-y: auto;
@@ -146,7 +142,6 @@ body {
 .dash-scroll-area::-webkit-scrollbar-track { background: transparent; }
 .dash-scroll-area::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 10px; }
 
-/* --- Stat Ribbon --- */
 .stat-ribbon {
     display: flex;
     gap: 16px;
@@ -204,7 +199,6 @@ body {
     color: var(--text-secondary); font-weight: 600; margin-top: 2px;
 }
 
-/* --- Hero Journey --- */
 .hero-journey {
     margin-bottom: 28px;
     opacity: 0;
@@ -400,7 +394,6 @@ body {
     animation: shimmer 1.8s infinite;
 }
 
-/* --- Bento Grid --- */
 .bento-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -438,7 +431,6 @@ body {
 }
 .bento-link:hover { color: var(--gold-hover); }
 
-/* Quick Actions */
 .bento-actions {
     grid-column: 1;
     grid-row: 1;
@@ -485,8 +477,6 @@ body {
     font-size: var(--text-sm); font-weight: 600; text-align: center;
 }
 
-
-/* Traveler Stories */
 .bento-stories { grid-column: 1; grid-row: 2; }
 
 .stories-scroll {
@@ -517,7 +507,6 @@ body {
     margin: 0;
 }
 
-/* Inspiration Card */
 .bento-inspire {
     grid-column: 2; grid-row: 1;
     position: relative; overflow: hidden;
@@ -572,7 +561,6 @@ body {
 
 .muted { color: var(--text-secondary); font-size: var(--text-sm); margin: 0; }
 
-/* ===== ANIMATIONS ===== */
 @keyframes fadeSlideUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -586,7 +574,6 @@ body {
     100% { background-position: 200% 0; }
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {
     .bento-grid { grid-template-columns: 1fr; }
     .bento-actions, .bento-inspire {
@@ -636,7 +623,6 @@ body {
     .hero-card__title { font-size: var(--text-2xl); }
 }
 
-/* ===== DARK MODE TWEAKS ===== */
 [data-theme="dark"] .stat-pill { background: var(--color-surface); }
 [data-theme="dark"] .action-tile { background: rgba(255,255,255,0.03); }
 [data-theme="dark"] .story-item { background: rgba(255,255,255,0.03); }

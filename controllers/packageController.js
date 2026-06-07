@@ -105,7 +105,7 @@ const uploadPackageImage = async (req, res, next) => {
   try {
     if (!req.file) return next(new AppError('Please upload an image file.', 400));
 
-    const imageUrl = `/uploads/${req.file.filename}`;
+    const imageUrl = req.file.path;
     const pkg = await Package.findByIdAndUpdate(req.params.id, { image: imageUrl }, { new: true });
     if (!pkg) return next(new AppError('Package not found.', 404));
 

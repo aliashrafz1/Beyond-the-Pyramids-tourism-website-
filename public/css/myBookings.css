@@ -1,7 +1,7 @@
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .dashboard-shell {
@@ -176,7 +176,6 @@ body {
     font-size: var(--text-lg);
 }
 
-
 .filters-sidebar {
     position: sticky;
     top: calc(var(--nav-height) + var(--space-xl));
@@ -282,7 +281,6 @@ body {
     letter-spacing: 0.05em;
 }
 
-
 .status--pending {
     background: rgba(197, 160, 89, 0.15);
     color: var(--gold-primary);
@@ -379,7 +377,6 @@ body {
     transform: translateY(-2px);
 }
 
-
 .empty-state {
     grid-column: 1 / -1;
     padding: var(--space-3xl);
@@ -413,14 +410,13 @@ body {
     transform: translateY(-3px);
 }
 
-
 .modal {
     position: fixed;
     inset: 0;
     z-index: 2000;
     background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(12px);
-    display: none; 
+    display: none;
     align-items: center;
     justify-content: center;
     padding: var(--space-xl);
@@ -483,7 +479,6 @@ body {
     font-size: var(--text-xs);
     color: var(--text-secondary);
 }
-
 
 @media (max-width: 1024px) {
     .main-container {

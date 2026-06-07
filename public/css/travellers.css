@@ -6,26 +6,17 @@
     min-height: 1.1em;
 }
 
-/* ================================================================
-   TravellersDetails — Luxury / Refined Aesthetic
-   Aesthetic:  Luxury Minimal  (Cormorant Garamond + Montserrat)
-   DFII Score: 12 — Execute fully
-   Anchor:     Underline-only inputs on a vast white canvas,
-               gold top-rule on each traveler card
-   ================================================================ */
-
-/* ── Layout: give the main area a proper scroll wrapper ───────── */
 .dashboard-main {
-    overflow: hidden; /* topbar stays fixed */
+    overflow: hidden;
 }
 
 .td-scroll-area {
     flex: 1;
     overflow-y: auto;
-    /* min-height trick so footer is pushed to the true bottom */
+
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 64px); /* 64px = dash-topbar height */
+    height: calc(100vh - 64px);
     scrollbar-width: thin;
     scrollbar-color: var(--gold-primary) transparent;
 }
@@ -33,7 +24,6 @@
 .td-scroll-area::-webkit-scrollbar-track { background: transparent; }
 .td-scroll-area::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 10px; }
 
-/* ── Page header ───────────────────────────────────────────────── */
 .td-page-header {
     padding: 3.5rem 4rem 2rem;
     max-width: 860px;
@@ -55,7 +45,7 @@
     color: var(--gold-primary);
     border: 1px solid rgba(197, 160, 89, 0.35);
     padding: 0.35rem 0.85rem;
-    border-radius: 0; /* square — intentional */
+    border-radius: 0;
 }
 
 .td-page-header__title {
@@ -84,17 +74,15 @@
     margin-bottom: 0;
 }
 
-/* ── Form wrap ─────────────────────────────────────────────────── */
 .td-form-wrap {
     padding: 2.5rem 4rem 0;
-    flex: 1; /* pushes footer to bottom */
+    flex: 1;
 }
 
 .editorial-section {
     max-width: 800px;
 }
 
-/* ── Traveler card ─────────────────────────────────────────────── */
 .traveler-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border-light);
@@ -105,7 +93,6 @@
     position: relative;
     transition: box-shadow 0.4s ease, transform 0.4s ease;
 
-    /* entrance animation */
     opacity: 0;
     animation: tdCardIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
@@ -125,7 +112,6 @@
     transform: translateY(-2px);
 }
 
-/* traveler card heading */
 .traveler-card h4 {
     margin-top: 0;
     margin-bottom: 2.25rem;
@@ -157,11 +143,10 @@
     flex-shrink: 0;
 }
 
-/* ── Form layout ───────────────────────────────────────────────── */
 .form-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 3rem; /* generous horizontal gap, no vertical gap (handled by groups) */
+    gap: 0 3rem;
     margin-bottom: 2.25rem;
 }
 
@@ -172,7 +157,6 @@
     min-width: 200px;
 }
 
-/* ── Field label ────────────────────────────────────────────────── */
 .form-group label {
     font-family: var(--font-body);
     font-size: 0.68rem;
@@ -183,7 +167,6 @@
     text-transform: uppercase;
 }
 
-/* ── Underline-only input (the memorable anchor) ───────────────── */
 .form-group input {
     padding: 0.75rem 0 0.6rem;
     border: none;
@@ -211,13 +194,11 @@
     opacity: 0.55;
 }
 
-/* Date input quirk — force same font as text inputs */
 .form-group input[type="date"] {
     font-family: var(--font-body);
     font-size: 0.95rem;
 }
 
-/* Nationality dropdown — matches underline aesthetic */
 .nationality-select {
     appearance: none;
     -webkit-appearance: none;
@@ -243,12 +224,10 @@
     box-shadow: 0 1px 0 0 var(--gold-primary);
 }
 
-/* Placeholder option */
 .nationality-select option[value=""] {
     color: var(--color-text-muted);
 }
 
-/* Dark mode: ensure dropdown background is visible */
 [data-theme="dark"] .nationality-select {
     background-color: var(--color-surface);
     color: var(--color-text);
@@ -258,7 +237,6 @@
     background-color: var(--color-surface);
 }
 
-/* ── Phone group (hidden until 18+ detected) ────────────────────── */
 .phone-group {
     display: none;
     opacity: 0;
@@ -272,7 +250,6 @@
     transform: translateY(0);
 }
 
-/* ── Action buttons ────────────────────────────────────────────── */
 .td-actions {
     display: flex;
     align-items: center;
@@ -326,9 +303,8 @@
     transform: translateY(-2px);
 }
 
-/* ── Footer (flows at bottom of scroll area, never sticky) ──────── */
 .td-footer {
-    margin-top: auto; /* push to absolute bottom */
+    margin-top: auto;
     border-top: 1px solid var(--color-border-light);
     background: var(--color-surface-alt);
     padding: 2.5rem 4rem;
@@ -373,7 +349,6 @@
     letter-spacing: 0.02em;
 }
 
-/* ── Dark-mode tweaks ─────────────────────────────────────────── */
 [data-theme="dark"] .traveler-card {
     background: var(--color-surface);
 }
@@ -391,7 +366,6 @@
     color: var(--color-bg);
 }
 
-/* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 992px) {
     .td-page-header,
     .td-form-wrap,

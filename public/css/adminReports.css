@@ -1,7 +1,3 @@
-/* ═══════════════════════════════════════════════════════
-   Reports & Analytics — Core Styles
-   ═══════════════════════════════════════════════════════ */
-
 body {
     font-family: var(--font-body);
     background-color: var(--bg-primary);
@@ -14,7 +10,6 @@ body {
     height: 100vh;
 }
 
-/* ─── Sidebar ─────────────────────────────────────────── */
 .dashboard-sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -121,7 +116,6 @@ body {
     background: rgba(255, 82, 82, 0.1);
 }
 
-/* ─── Main Content ────────────────────────────────────── */
 .dashboard-main {
     flex: 1;
     overflow-y: auto;
@@ -146,7 +140,6 @@ body {
     color: var(--color-text-muted);
 }
 
-/* ─── KPI Row (Top) ───────────────────────────────────── */
 .kpi-row {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -154,7 +147,6 @@ body {
     margin-bottom: 24px;
 }
 
-/* ─── Cards & Sections ────────────────────────────────── */
 .card {
     background: white;
     border-radius: var(--radius-lg);
@@ -190,7 +182,6 @@ body {
     padding: 22px 24px;
 }
 
-/* ─── Filters & Inputs ────────────────────────────────── */
 .section-filters {
     display: flex;
     flex-direction: row;
@@ -272,7 +263,6 @@ input[type="date"]:focus, .select-modern:focus {
     color: var(--color-text);
 }
 
-/* ─── Stats Grid ──────────────────────────────────────── */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -323,7 +313,6 @@ input[type="date"]:focus, .select-modern:focus {
     line-height: 1.2;
 }
 
-/* ─── Charts ──────────────────────────────────────────── */
 .two-col {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -350,7 +339,6 @@ canvas {
     max-width: 100% !important;
 }
 
-/* ─── Tables ──────────────────────────────────────────── */
 .table-container {
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
@@ -385,7 +373,6 @@ tr:hover td {
     background: #FAFAFA;
 }
 
-/* ─── Badges ──────────────────────────────────────────── */
 [class^="badge-"] {
     display: inline-flex;
     padding: 4px 12px;
@@ -405,7 +392,6 @@ tr:hover td {
 .badge-checkin   { background: rgba(41,128,185,0.1);  color: #2980B9; border: 1px solid rgba(41,128,185,0.2); }
 .badge-checkout  { background: rgba(142,68,173,0.1);  color: #8e44ad; border: 1px solid rgba(142,68,173,0.2); }
 
-/* ─── Highlights (Packages) ───────────────────────────── */
 .highlight-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -437,7 +423,6 @@ tr:hover td {
 }
 .least-popular i { color: #3498DB; }
 
-/* ─── Reviews Layout ──────────────────────────────────── */
 .rating-layout {
     display: grid;
     grid-template-columns: 280px 1fr 340px;
@@ -504,7 +489,6 @@ tr:hover td {
     font-size: 0.9rem;
 }
 
-/* ─── Responsive ──────────────────────────────────────── */
 @media (max-width: 1400px) {
     .kpi-row { grid-template-columns: repeat(3, 1fr); }
     .two-col { grid-template-columns: 1fr; }
@@ -551,9 +535,6 @@ tr:hover td {
     .kpi-row { grid-template-columns: 1fr; }
 }
 
-/* ═══════════════════════════════════════════════════════
-   DARK MODE OVERRIDES
-   ═══════════════════════════════════════════════════════ */
 [data-theme="dark"] body {
     background-color: #0A0A0A;
     color: #F2F2F2;
@@ -648,7 +629,6 @@ tr:hover td {
     background: #444;
 }
 
-/* Badges Dark Mode */
 [data-theme="dark"] .badge-admin     { background: rgba(197,160,89,0.15); color: var(--gold-primary); border-color: rgba(197,160,89,0.35); }
 [data-theme="dark"] .badge-user      { background: rgba(39,174,96,0.15);  color: #4ccc80;            border-color: rgba(39,174,96,0.3); }
 [data-theme="dark"] .badge-active    { background: rgba(39,174,96,0.15);  color: #4ccc80;            border-color: rgba(39,174,96,0.3); }

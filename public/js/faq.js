@@ -1,6 +1,5 @@
-
 const faqData = [
-    
+
     {
         id: 1,
         category: "general",
@@ -31,8 +30,7 @@ const faqData = [
         question: "What makes Beyond the Pyramids different?",
         answer: "We offer authentic Egyptian experiences with local experts, flexible customization options, and 24/7 customer support to ensure you have the best possible journey."
     },
-    
-    
+
     {
         id: 6,
         category: "booking",
@@ -57,8 +55,7 @@ const faqData = [
         question: "Can I book for someone else?",
         answer: "Yes, you can book trips for friends and family. Just provide their details during the booking process or add them as accompanying travelers."
     },
-    
-    
+
     {
         id: 10,
         category: "trips",
@@ -83,8 +80,7 @@ const faqData = [
         question: "Can I request a specific tour guide?",
         answer: "Yes, you can request specific guides during booking. We'll do our best to accommodate your request based on availability."
     },
-    
-    
+
     {
         id: 14,
         category: "account",
@@ -103,8 +99,7 @@ const faqData = [
         question: "Can I delete my account?",
         answer: "Yes, contact our customer support team to request account deletion. Please note that this action is permanent."
     },
-    
-    
+
     {
         id: 17,
         category: "cancel",
@@ -123,8 +118,7 @@ const faqData = [
         question: "What if the trip is cancelled by the provider?",
         answer: "If we need to cancel your trip, you will receive a full refund and we'll help you find an alternative experience."
     },
-    
-    
+
     {
         id: 20,
         category: "support",
@@ -145,47 +139,41 @@ const faqData = [
     }
 ];
 
-
 let selectedCategory = null;
-
 
 const faqContainer = document.getElementById('faqContainer');
 const tabBtns = document.querySelectorAll('.tab-btn');
-
 
 document.addEventListener('DOMContentLoaded', function() {
     renderFAQs();
     attachEventListeners();
 });
 
-
 function renderFAQs() {
     let filteredFAQs = faqData;
-    
-    
+
     if (selectedCategory !== null) {
         filteredFAQs = faqData.filter(faq => faq.category === selectedCategory);
     }
-    
+
     if (filteredFAQs.length === 0) {
         faqContainer.innerHTML = `<div class="no-results">No questions found in this category.</div>`;
         return;
     }
-    
+
     faqContainer.innerHTML = '';
-    
+
     filteredFAQs.forEach(faq => {
         const faqItem = createFAQItem(faq);
         faqContainer.appendChild(faqItem);
     });
 }
 
-
 function createFAQItem(faq) {
     const item = document.createElement('div');
     item.className = 'faq-item';
     item.setAttribute('data-id', faq.id);
-    
+
     item.innerHTML = `
         <div class="faq-question">
             <span>${faq.question}</span>
@@ -195,14 +183,12 @@ function createFAQItem(faq) {
             ${faq.answer}
         </div>
     `;
-    
-    
+
     const questionDiv = item.querySelector('.faq-question');
-    
+
     questionDiv.addEventListener('click', function() {
         const isOpening = !item.classList.contains('active');
-        
-        
+
         document.querySelectorAll('.faq-item.active').forEach(activeItem => {
             if (activeItem !== item) {
                 activeItem.classList.remove('active');
@@ -218,28 +204,26 @@ function createFAQItem(faq) {
             item.querySelector('.faq-answer').classList.remove('show');
         }
     });
-    
+
     return item;
 }
 
-
 function handleTabClick(clickedBtn, category) {
     const isCurrentlySelected = clickedBtn.classList.contains('active');
-    
+
     if (isCurrentlySelected) {
-        
+
         clickedBtn.classList.remove('active');
         selectedCategory = null;
     } else {
-        
+
         tabBtns.forEach(btn => btn.classList.remove('active'));
         clickedBtn.classList.add('active');
         selectedCategory = category;
     }
-    
+
     renderFAQs();
 }
-
 
 function attachEventListeners() {
     tabBtns.forEach(btn => {
@@ -249,5 +233,3 @@ function attachEventListeners() {
         });
     });
 }
-
-

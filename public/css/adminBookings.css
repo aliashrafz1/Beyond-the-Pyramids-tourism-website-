@@ -1,6 +1,3 @@
-
-
-
 .status-badge {
     display: inline-block;
     padding: 0.3rem 0.75rem;
@@ -32,7 +29,6 @@ body {
     height: 100vh;
     width: 100vw;
 }
-
 
 .dashboard-sidebar {
     width: var(--sidebar-width);
@@ -140,14 +136,12 @@ body {
     background: rgba(255, 82, 82, 0.1);
 }
 
-
 .dashboard-main {
     flex: 1;
     overflow-y: auto;
     padding: var(--space-2xl);
     background-color: var(--bg-primary);
 }
-
 
 .top-bar {
     display: flex;
@@ -185,7 +179,6 @@ body {
     border-color: rgba(76, 175, 80, 0.2);
 }
 
-
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -216,7 +209,6 @@ body {
     margin: 0;
 }
 
-
 .filters {
     display: flex;
     gap: var(--space-md);
@@ -244,13 +236,11 @@ body {
 
 .filters input { flex: 1; }
 
-
 #bookingsContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: var(--space-xl);
 }
-
 
 .booking-card {
     background: var(--color-surface);
@@ -325,7 +315,6 @@ body {
     margin-top: 12px !important;
 }
 
-
 .booking-actions {
     margin-top: auto;
     padding-top: var(--space-lg);
@@ -359,7 +348,6 @@ body {
 .approve-btn:hover { background: var(--color-success); color: white; }
 .reject-btn:hover { background: var(--color-danger); color: white; }
 .complete-btn:hover { background: var(--color-info); color: white; }
-
 
 dialog {
     border: 1px solid var(--color-border-light);
@@ -408,7 +396,6 @@ dialog footer {
 }
 
 dialog footer button { flex: 1; padding: 12px; }
-
 
 .stat-card {
     display: flex;

@@ -1,7 +1,5 @@
-
-
 :root {
-    
+
     --color-bg: #F8F6F2;
     --color-surface: rgba(255, 255, 255, 0.7);
     --color-text: #1A1A1A;
@@ -16,7 +14,7 @@
 }
 
 [data-theme="dark"] {
-    
+
     --color-bg: #0A0A0A;
     --color-surface: rgba(18, 18, 18, 0.8);
     --color-text: #F2F2F2;
@@ -41,21 +39,20 @@ body {
     max-width: 1100px;
 }
 
-/* ── Neon circulating border wrapper ───────────────────── */
 .neon-border-wrap {
     position: relative;
     border-radius: var(--radius-xl);
     padding: 3px;
     background: var(--color-border);
     transition: box-shadow 0.4s ease;
-    /* clip the rotating ::before so its corners never bleed out */
+
     overflow: hidden;
 }
 
 .neon-border-wrap::before {
     content: '';
     position: absolute;
-    /* slightly oversized so rotating corners stay clipped inside */
+
     inset: -50%;
     width: 200%;
     height: 200%;
@@ -100,7 +97,7 @@ body {
     grid-template-columns: 1fr 1.2fr;
     background: var(--color-surface);
     backdrop-filter: blur(var(--glass-blur));
-    border-radius: calc(var(--radius-xl) - 3px); /* inset from wrapper padding */
+    border-radius: calc(var(--radius-xl) - 3px);
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
     transition: background 0.5s ease;
@@ -110,7 +107,6 @@ body {
 [data-theme="dark"] .layout {
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
 }
-
 
 .theme-toggle {
     position: absolute;
@@ -135,7 +131,6 @@ body {
     color: white;
     transform: scale(1.1);
 }
-
 
 .image-panel {
     position: relative;
@@ -196,7 +191,6 @@ body {
     line-height: 1.6;
     max-width: 320px;
 }
-
 
 .form-panel {
     padding: 45px;
@@ -316,7 +310,6 @@ input:focus {
     font-size: 0.85rem;
 }
 
-
 .checkbox-label {
     display: flex;
     align-items: center;
@@ -340,7 +333,6 @@ input:focus {
 .forgot-link:hover {
     opacity: 0.7;
 }
-
 
 .one-click-section {
     margin-top: 40px;
@@ -413,7 +405,6 @@ input:focus {
     opacity: 1;
 }
 
-
 .submit-btn {
     width: 100%;
     padding: 16px;
@@ -476,7 +467,6 @@ input:focus {
     background: rgba(255, 255, 255, 0.05);
 }
 
-
 .error {
     color: #ff4d4d;
     font-size: 0.7rem;
@@ -486,7 +476,6 @@ input:focus {
     letter-spacing: 0;
     text-transform: none;
 }
-
 
 @media (max-width: 900px) {
     .layout {

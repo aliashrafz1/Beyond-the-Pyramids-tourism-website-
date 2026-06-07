@@ -38,9 +38,9 @@ function highlightSidebarItem(pkg) {
     sidebarLinks.forEach(li => li.classList.remove('active'));
 
     let targetHref = null;
-    if (type.includes('week')) targetHref = 'week-packages.html';
-    else if (type.includes('single')) targetHref = 'SingleLocation.html';
-    else targetHref = 'dayPackages.html';
+    if (type.includes('week')) targetHref = '/packages/week';
+    else if (type.includes('single')) targetHref = '/packages/single';
+    else targetHref = '/packages/day';
 
     sidebarLinks.forEach(li => {
         const a = li.querySelector('a');
@@ -49,7 +49,6 @@ function highlightSidebarItem(pkg) {
         }
     });
 }
-
 
 function normalise(p) {
     let basePrice = parsePackageMoney(p.basePrice ?? p.discountedPrice ?? p.price ?? 0);
@@ -64,7 +63,9 @@ function normalise(p) {
             : p.type === 'week' ? 'Week Package'
                 : 'Package');
 
-    let itinerary = p.itinerary || p.dailyItinerary || [];
+    let itinerary = (p.itinerary && p.itinerary.length ? p.itinerary : null)
+                 || (p.dailyItinerary && p.dailyItinerary.length ? p.dailyItinerary : null)
+                 || [];
     if (typeof itinerary === 'string') {
         try { itinerary = JSON.parse(itinerary); } catch { itinerary = []; }
     }
@@ -160,7 +161,6 @@ function buildPageHTML(pkg) {
                     <span>${pkg._rating.toFixed(1)}</span>
                 </div>
                 ${pkg._reviews ? `<span class="pkg-meta-item"><i class="fas fa-comment"></i> ${pkg._reviews.toLocaleString()} Reviews</span>` : ''}
-                ${pkg.languages ? `<span class="pkg-meta-item"><i class="fas fa-globe"></i> ${pkg.languages}</span>` : ''}
             </div>
         </div>
     </section>
@@ -206,7 +206,9 @@ function buildPageHTML(pkg) {
                             <span class="pkg-tier__name"><i class="fas fa-crown"></i> Deluxe</span>
                             <span class="pkg-tier__price" id="price-full">${formatPrice(pkg._fullPrice)}</span>
                         </div>
-                        <p class="pkg-tier__desc">Includes expert tour guide</p>
+                        <p class="pkg-tier__desc">${pkg.deluxeExtras
+                            ? pkg.deluxeExtras.split('|').slice(0, 2).map(e => e.trim()).join(' &middot; ')
+                            : 'Private Egyptologist guide &middot; luxury transport &middot; premium inclusions'}</p>
                     </div>
                 </div>
 
@@ -273,13 +275,16 @@ function buildItinerary(items) {
 function buildServices(pkg) {
     const included = pkg._included.length ? pkg._included : ['Expert Guide', 'Entrance Fees', 'A/C Transport'];
     const excluded = ['International Flights', 'Egypt Entry Visa', 'Beverages with Meals', 'Personal Insurance'];
+    const deluxeItems = pkg.deluxeExtras
+        ? pkg.deluxeExtras.split('|').map(e => e.trim()).filter(Boolean)
+        : [];
 
     return `
     <section class="pkg-section" aria-label="What's included">
         <h2 class="pkg-section-title"><i class="fas fa-circle-check"></i> Included &amp; Excluded</h2>
         <div class="pkg-services">
             <div class="pkg-services-box included">
-                <h3><i class="fas fa-check-circle"></i> Included</h3>
+                <h3><i class="fas fa-check-circle"></i> Standard Includes</h3>
                 <ul>${included.map(i => `<li><i class="fas fa-check"></i> ${i}</li>`).join('')}</ul>
             </div>
             <div class="pkg-services-box excluded">
@@ -287,6 +292,13 @@ function buildServices(pkg) {
                 <ul>${excluded.map(e => `<li><i class="fas fa-xmark"></i> ${e}</li>`).join('')}</ul>
             </div>
         </div>
+        ${deluxeItems.length ? `
+        <div class="pkg-deluxe-extras">
+            <h3><i class="fas fa-crown"></i> Deluxe Tier Adds</h3>
+            <ul class="pkg-deluxe-list">
+                ${deluxeItems.map(e => `<li><i class="fas fa-plus-circle"></i> ${e}</li>`).join('')}
+            </ul>
+        </div>` : ''}
     </section>`;
 }
 
@@ -316,6 +328,13 @@ function buildReviews(pkg) {
                 </div>
                 <div class="pkg-review-stars" style="font-size:0.8rem; margin-bottom:0.5rem;">${buildStars(r.rating)}</div>
                 <p class="pkg-review-text">"${r.text || r.title || ''}"</p>
+                ${r.photos && r.photos.length ? `
+                <div class="review-photos">
+                    ${r.photos.slice(0, 4).map(p => `
+                    <a href="${p}" target="_blank" rel="noopener">
+                        <img src="${p}" alt="Review photo" class="review-photo-thumb" loading="lazy">
+                    </a>`).join('')}
+                </div>` : ''}
             </article>`).join('')}
         </div>
     </section>`;
@@ -555,7 +574,6 @@ function initBookingAction() {
         btn.disabled = true;
     });
 }
-
 
 function initTimelineReveal() {
     const items = document.querySelectorAll('.reveal-timeline');

@@ -60,7 +60,6 @@
                 </div>
             </header>
 
-            <!-- Stats Row -->
             <section class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
@@ -80,7 +79,6 @@
                 </div>
             </section>
 
-            <!-- Bookings Table -->
             <section class="card" style="margin-top:1.5rem;">
                 <div id="bookings-table-container" style="overflow-x:auto;">
                     <table class="activity-table" style="width:100%;border-collapse:collapse;">
@@ -145,7 +143,6 @@
             return 'checked-out';
         }
 
-        // Auto-compute statuses on load
         document.querySelectorAll('.status-badge[data-db-status]').forEach(badge => {
             const computed = computeStatus(badge.dataset.dbStatus, badge.dataset.date);
             badge.textContent = computed.replace('-', ' ');

@@ -240,7 +240,7 @@
                     val.textContent = '$' + d.USD.toLocaleString() + ' · €' + d.EUR.toLocaleString() + ' · £' + d.GBP.toLocaleString();
                     row.style.opacity = '1';
                 }
-            } catch (e) { /* silently fail if Frankfurter is unreachable */ }
+            } catch (e) {}
         })();
     </script>
     <script src="/js/global.js"></script>

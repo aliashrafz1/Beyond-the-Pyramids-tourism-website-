@@ -3,7 +3,6 @@ const getDashboard = (role) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  init3DTilt();
   initAtmosphericReveal();
   initGlowInputs();
 
@@ -49,22 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-function init3DTilt() {
-  document.querySelectorAll('.tilt-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const rotateX = ((e.clientY - rect.top  - rect.height / 2) / (rect.height / 2)) * -5;
-      const rotateY = ((e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2)) *  5;
-      card.style.transform  = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      card.style.boxShadow  = `${rotateY * -1}px ${rotateX}px 30px rgba(0,0,0,0.3), 0 15px 45px rgba(0,0,0,0.1)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      card.style.boxShadow = '';
-    });
-  });
-}
 
 function initAtmosphericReveal() {
   document.querySelectorAll('.reveal-item').forEach((el, i) => {

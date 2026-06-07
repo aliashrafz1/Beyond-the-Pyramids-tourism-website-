@@ -170,6 +170,15 @@
                         </div>
                         <h4>"<%= review.title %>"</h4>
                         <p><%= review.text.substring(0, 120) %>...</p>
+                        <% if (review.photos && review.photos.length > 0) { %>
+                        <div class="review-photos">
+                            <% review.photos.slice(0, 4).forEach(photo => { %>
+                            <a href="<%= photo %>" target="_blank" rel="noopener">
+                                <img src="<%= photo %>" alt="Review photo" class="review-photo-thumb" loading="lazy">
+                            </a>
+                            <% }) %>
+                        </div>
+                        <% } %>
                         <div class="testimonial-author">
                             <img src="<%= review.userId && review.userId.image ? review.userId.image : 'https://ui-avatars.com/api/?name=Traveler&background=c8a96e&color=fff' %>" alt="<%= review.userId ? review.userId.name : 'Traveler' %>">
                             <span><%= review.userId ? review.userId.name : 'Verified Traveler' %></span>

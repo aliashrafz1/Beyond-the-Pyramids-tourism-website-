@@ -6,7 +6,7 @@ const { uploadAvatar } = require('../middleware/upload');
 
 router.get('/profile',    protect, userController.getProfile);
 router.put('/profile',    protect, userController.updateProfile);
-router.put('/avatar',     protect, userController.uploadAvatar);
+router.put('/avatar',     protect, uploadAvatar, userController.uploadAvatar);
 router.delete('/avatar',  protect, userController.removeAvatar);
 router.delete('/account', protect, userController.deleteAccount);
 

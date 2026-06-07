@@ -1,5 +1,3 @@
-
-
 const allPackages = (window.SERVER_PACKAGES || []).filter(p => p.type === "day");
 const packagesGrid = document.getElementById('packagesGrid');
 
@@ -33,10 +31,14 @@ function renderPackages(packagesToShow) {
             </div>
             <h3>${pkg.name}</h3>
             <p class="package-description">${pkg.description}</p>
-            <div class="package-price-tag">EGP ${pkg.price} <small>/ explorer</small></div>
+            <div class="package-price-tag">
+                ${pkg.discountedPrice
+                    ? `EGP ${pkg.discountedPrice.toLocaleString()} <small style="opacity:.6;">/ EGP ${pkg.price.toLocaleString()}</small>`
+                    : `EGP ${(pkg.price || 0).toLocaleString()}`}
+            </div>
             <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                <button class="btn btn--secondary btn--small" style="flex: 1; padding: 0.5rem;" onclick="selectPackage('${pkgId}', 'standard')">Standard (Inc. Transport)</button>
-                <button class="btn btn--primary btn--small" style="flex: 2; padding: 0.5rem;" onclick="selectPackage('${pkgId}', 'deluxe')">Deluxe (Inc. Guide)</button>
+                <button class="btn btn--secondary btn--small" style="flex: 1; padding: 0.5rem;" onclick="selectPackage('${pkgId}', 'standard')">Standard</button>
+                <button class="btn btn--primary btn--small" style="flex: 1; padding: 0.5rem;" onclick="selectPackage('${pkgId}', 'deluxe')">Deluxe</button>
             </div>
         `;
 
@@ -47,4 +49,3 @@ function renderPackages(packagesToShow) {
 function selectPackage(packageId, tier = 'standard') {
     window.location.href = `/packages/${packageId}?tier=${tier}`;
 }
-

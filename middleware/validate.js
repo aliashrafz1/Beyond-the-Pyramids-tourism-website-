@@ -43,14 +43,6 @@ const validatePackage = [
   handleValidationErrors,
 ];
 
-const validateBooking = [
-  body('packageId').notEmpty().withMessage('Package ID is required'),
-  body('date').notEmpty().withMessage('Travel date is required'),
-  body('travelers').isInt({ min: 1, max: 15 }).withMessage('Travelers must be between 1 and 15'),
-  body('tier').isIn(['standard', 'deluxe', 'full', 'Architect Custom']).withMessage('Invalid tier selected'),
-  handleValidationErrors,
-];
-
 const validateReview = [
   body('packageId').notEmpty().withMessage('Package ID is required'),
   body('rating').isInt({ min: 1, max: 5 }).withMessage('Rating must be between 1 and 5'),
@@ -78,7 +70,6 @@ module.exports = {
   validateRegister,
   validateLogin,
   validatePackage,
-  validateBooking,
   validateReview,
   validateContact,
   validatePasswordUpdate,
